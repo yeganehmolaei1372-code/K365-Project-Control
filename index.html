@@ -190,7 +190,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,sans-serif;c
 .dp-inp{width:100%;border:1px solid var(--brd2);border-radius:var(--r);padding:7px 34px 7px 11px;font-size:12px;color:var(--text);background:var(--card);outline:none;font-family:inherit;cursor:pointer}
 .dp-inp:hover,.dp-inp:focus{border-color:var(--pu)}
 .dp-ico{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--t2);font-size:15px;pointer-events:none}
-.dp-popup{position:fixed;background:var(--card);border:1px solid var(--brd2);border-radius:var(--rl);box-shadow:0 8px 32px rgba(0,0,0,.15);z-index:10000;width:280px;overflow:hidden;display:none}
+.dp-popup{position:fixed;background:var(--card);border:1px solid var(--brd2);border-radius:var(--rl);box-shadow:0 8px 32px rgba(0,0,0,.15);z-index:99999;width:280px;overflow:hidden;display:none}
 .dp-popup.open{display:block}
 .dp-head{background:var(--pu);padding:14px 16px;color:#fff}
 .dp-ht{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
@@ -224,7 +224,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,sans-serif;c
 .dp-mc.sel,.dp-yc.sel{background:var(--pu);color:#fff;font-weight:700}
 .dp-yc.cur{border-color:var(--pu);color:var(--pu)}
 .dp-inp.sm{padding:4px 28px 4px 8px;font-size:11px;border-radius:20px}
-.ov{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:200}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:500}
 .ov.hidden{display:none}
 .modal{background:var(--card);border-radius:var(--rl);padding:24px;width:440px;max-width:95vw;max-height:88vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2)}
 .mtt{font-size:15px;font-weight:700;margin-bottom:16px}
@@ -238,7 +238,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,sans-serif;c
 .notify.show{opacity:1}
 
 /* LOGIN */
-.login-ov{position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;z-index:9999;flex-direction:column;gap:0}
+.login-ov{position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;z-index:1000;flex-direction:column;gap:0}
 .login-ov.hidden{display:none}
 .login-box{background:#fff;border-radius:16px;padding:36px 40px;width:360px;max-width:92vw;box-shadow:0 20px 60px rgba(0,0,0,.4);text-align:center}
 .login-logo{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,#7c4dff,#e91e8c);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:#fff;margin:0 auto 16px}
@@ -250,6 +250,116 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,sans-serif;c
 .login-btn:hover{background:#6a3de8}
 .login-err{font-size:12px;color:#ff5252;margin-top:8px;min-height:18px;font-weight:500}
 .login-hint{font-size:11px;color:#a0a3b1;margin-top:16px}
+
+/* KANBAN */
+.kb-wrap{display:flex;gap:12px;padding:14px;overflow-x:auto;flex:1;align-items:flex-start}
+.kb-wrap::-webkit-scrollbar{height:5px}
+.kb-wrap::-webkit-scrollbar-thumb{background:var(--brd2);border-radius:3px}
+.kb-col{flex-shrink:0;width:240px;background:var(--bg);border-radius:var(--rl);display:flex;flex-direction:column;max-height:calc(100vh - 200px)}
+.kb-col-hdr{padding:10px 12px;display:flex;align-items:center;justify-content:space-between;border-radius:var(--rl) var(--rl) 0 0;flex-shrink:0}
+.kb-col-title{font-size:12px;font-weight:700;display:flex;align-items:center;gap:6px}
+.kb-col-cnt{font-size:10px;background:rgba(0,0,0,.1);padding:1px 7px;border-radius:10px;font-weight:700}
+.kb-cards{padding:8px;display:flex;flex-direction:column;gap:7px;overflow-y:auto;flex:1}
+.kb-cards::-webkit-scrollbar{width:3px}
+.kb-cards::-webkit-scrollbar-thumb{background:var(--brd2);border-radius:3px}
+.kb-card{background:var(--card);border:1px solid var(--brd);border-radius:var(--r);padding:10px 12px;cursor:pointer;transition:all .15s;position:relative}
+.kb-card:hover{border-color:var(--pu);box-shadow:0 2px 8px rgba(124,77,255,.12)}
+.kb-card.late{border-right:3px solid var(--red)}
+.kb-card.today{border-right:3px solid var(--orange)}
+.kb-card-title{font-size:12px;font-weight:600;margin-bottom:6px;color:var(--text);line-height:1.4}
+.kb-card-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.kb-card-proj{font-size:10px;padding:1px 7px;border-radius:20px;font-weight:600}
+.kb-card-av{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:#fff;flex-shrink:0}
+.kb-card-date{font-size:10px;color:var(--t2)}
+.kb-card-date.late{color:var(--red);font-weight:600}
+.kb-card-pct{height:3px;background:var(--bg);border-radius:2px;margin-top:8px;overflow:hidden}
+.kb-card-pctf{height:100%;border-radius:2px}
+.kb-add{margin:8px;padding:7px;border:1px dashed var(--brd2);border-radius:var(--r);text-align:center;cursor:pointer;font-size:11px;color:var(--t2);transition:all .15s;background:none;width:calc(100% - 16px);font-family:inherit}
+.kb-add:hover{border-color:var(--pu);color:var(--pu);background:var(--pub)}
+/* ROW COLORING in task list */
+.tkrow-late{background:#fff8f8}
+.tkrow-late:hover{background:#fff0f0}
+.tkrow-today{background:#fff8f0}
+.tkrow-today:hover{background:#fff3e6}
+.tkrow-done{opacity:.65}
+/* GLOBAL SEARCH */
+.gsrch-wrap{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:5000;display:flex;align-items:flex-start;justify-content:center;padding-top:80px}
+.gsrch-wrap.hidden{display:none}
+.gsrch-box{background:var(--card);border-radius:var(--rl);width:600px;max-width:95vw;box-shadow:0 20px 60px rgba(0,0,0,.3);overflow:hidden}
+.gsrch-inp-row{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--brd)}
+.gsrch-inp-row i{font-size:20px;color:var(--t2)}
+.gsrch-inp{flex:1;border:none;outline:none;font-size:15px;color:var(--text);background:transparent;font-family:inherit}
+.gsrch-results{max-height:400px;overflow-y:auto}
+.gsrch-results::-webkit-scrollbar{width:4px}
+.gsrch-results::-webkit-scrollbar-thumb{background:var(--brd2)}
+.gsrch-section{padding:8px 16px 4px;font-size:10px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.5px}
+.gsrch-item{padding:9px 16px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:background .1s;border-bottom:1px solid var(--brd)}
+.gsrch-item:hover{background:var(--bg)}
+.gsrch-item:last-child{border-bottom:none}
+.gsrch-item-icon{font-size:14px;color:var(--t2);flex-shrink:0}
+.gsrch-item-main{flex:1;min-width:0}
+.gsrch-item-title{font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gsrch-item-sub{font-size:10px;color:var(--t2)}
+.gsrch-empty{padding:32px;text-align:center;color:var(--t2);font-size:13px}
+.gsrch-kbd{font-size:10px;background:var(--bg);border:1px solid var(--brd2);border-radius:4px;padding:2px 6px;color:var(--t2)}
+/* SUBTASK */
+.subtask-list{margin-top:8px;padding-right:20px;border-right:2px solid var(--brd)}
+.subtask-row{display:flex;align-items:center;gap:7px;padding:5px 0;border-bottom:1px solid var(--brd);font-size:11px}
+.subtask-row:last-child{border-bottom:none}
+.subtask-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.subtask-name.done{text-decoration:line-through;color:var(--t3)}
+.subtask-expand{cursor:pointer;color:var(--t2);font-size:11px;padding:2px 5px;border-radius:3px;border:none;background:none;font-family:inherit}
+.subtask-expand:hover{background:var(--bg);color:var(--pu)}
+/* TASK DETAIL MODAL */
+.task-detail{width:580px}
+.td-hdr{display:flex;align-items:flex-start;gap:10px;margin-bottom:16px}
+.td-title{font-size:16px;font-weight:700;flex:1;outline:none;border:none;background:transparent;font-family:inherit;color:var(--text);padding:0}
+.td-body{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.td-full{grid-column:1/-1}
+.td-label{font-size:10px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}
+.td-val{font-size:12px;color:var(--text)}
+
+/* SUBTASK */
+.st-wrap{padding:8px 14px 4px;border-top:1px solid var(--brd)}
+.st-row{display:flex;align-items:center;gap:7px;padding:5px 0;border-bottom:1px dashed var(--brd);font-size:11px}
+.st-row:last-child{border-bottom:none}
+.st-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.st-name.done{text-decoration:line-through;color:var(--t3)}
+.st-pct{font-size:10px;color:var(--t2);min-width:28px;text-align:center}
+.st-add{display:flex;gap:6px;padding:6px 0 4px;align-items:center}
+.st-add input{flex:1;border:1px solid var(--brd2);border-radius:var(--r);padding:4px 8px;font-size:11px;font-family:inherit;outline:none}
+.st-add input:focus{border-color:var(--pu)}
+
+/* TIME TRACKING */
+.tt-row{display:flex;align-items:center;gap:8px;padding:7px 14px;border-bottom:1px solid var(--brd);font-size:12px}
+.tt-row:last-child{border-bottom:none}
+.tt-row:hover{background:var(--bg)}
+.tt-av{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0}
+.tt-bar{height:6px;background:var(--bg);border-radius:3px;overflow:hidden;flex:1}
+.tt-barf{height:100%;border-radius:3px}
+.tt-timer{display:flex;align-items:center;gap:6px;padding:8px 14px;border-bottom:1px solid var(--brd);background:var(--bg);flex-shrink:0}
+.tt-timer-disp{font-size:20px;font-weight:700;font-family:monospace;color:var(--pu);min-width:70px}
+.tt-active{color:var(--green)}
+
+/* CALENDAR VIEW */
+.cal-wrap{display:flex;flex-direction:column;flex:1;overflow:hidden}
+.cal-hdr{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--brd);background:var(--card);flex-shrink:0}
+.cal-nav{display:flex;align-items:center;gap:6px}
+.cal-nav button{padding:4px 10px;border-radius:20px;border:1px solid var(--brd2);background:var(--card);font-size:11px;cursor:pointer;font-family:inherit;color:var(--t2)}
+.cal-nav button:hover{border-color:var(--pu);color:var(--pu)}
+.cal-title{font-size:15px;font-weight:700;min-width:160px}
+.cal-body{flex:1;overflow-y:auto;padding:10px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cal-dow{text-align:center;font-size:10px;font-weight:700;color:var(--t2);padding:4px 0;text-transform:uppercase;letter-spacing:.4px}
+.cal-day{min-height:90px;border:1px solid var(--brd);border-radius:var(--r);padding:5px;background:var(--card);transition:border-color .15s}
+.cal-day:hover{border-color:var(--pu)}
+.cal-day.today{border-color:var(--pu);background:var(--pub)}
+.cal-day.other-month{background:var(--bg);opacity:.6}
+.cal-day-num{font-size:11px;font-weight:700;color:var(--t2);margin-bottom:4px}
+.cal-day.today .cal-day-num{color:var(--pu)}
+.cal-event{font-size:9px;padding:2px 5px;border-radius:3px;margin-bottom:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer;font-weight:600}
+.cal-event:hover{opacity:.85}
+.cal-more{font-size:9px;color:var(--t2);padding:1px 3px}
 </style>
 
   <!-- Firebase -->
@@ -350,7 +460,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,sans-serif;c
   </div>
 </div>
 <div class="ov hidden" id="ov">
-  <div class="modal" onclick="event.stopPropagation()">
+  <div class="modal" onclick="if(!event.target.closest('.dp-popup'))event.stopPropagation()">
     <div class="mtt" id="m-title"></div>
     <div id="m-body"></div>
     <div class="ma">
@@ -375,6 +485,20 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,sans-serif;c
   </div>
 </div>
 
+
+<!-- GLOBAL SEARCH -->
+<div class="gsrch-wrap hidden" id="gsrch" onclick="if(event.target===this)closeGSearch()">
+  <div class="gsrch-box" onclick="event.stopPropagation()">
+    <div class="gsrch-inp-row">
+      <i class="ti ti-search"></i>
+      <input class="gsrch-inp" id="gsrch-inp" placeholder="جستجو در همه پروژه‌ها، وظایف و Task List..." oninput="doGSearch(this.value)" autocomplete="off">
+      <span class="gsrch-kbd">Esc</span>
+    </div>
+    <div class="gsrch-results" id="gsrch-results">
+      <div class="gsrch-empty">برای شروع تایپ کنید...</div>
+    </div>
+  </div>
+</div>
 <div class="app">
   <div class="sb" id="sb">
     <div class="sbtop">
@@ -383,7 +507,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,sans-serif;c
         <span class="wsname">پروژه‌یار</span>
         <i class="ti ti-selector" style="color:rgba(255,255,255,.3);font-size:13px"></i>
       </div>
-      <div class="sbsrch"><i class="ti ti-search"></i><span>جستجو...</span></div>
+      <div class="sbsrch" onclick="openGSearch()"><i class="ti ti-search"></i><span>جستجو... <span style="opacity:.5;font-size:10px">Ctrl+K</span></span></div>
     </div>
     <div class="sbbody">
       <div class="snlbl">فضای کاری</div>
@@ -391,6 +515,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,sans-serif;c
       <button class="sni" id="nav-gantt" onclick="go('gantt',this)"><i class="ti ti-timeline"></i><span class="snl">گانت تقویمی</span></button>
       <button class="sni" id="nav-tasklist" onclick="go('tasklist',this)"><i class="ti ti-table"></i><span class="snl">Task List</span></button>
       <button class="sni" id="nav-tasks" onclick="go('tasks',this)"><i class="ti ti-checkbox"></i><span class="snl">وظایف</span></button>
+      <button class="sni" id="nav-calendar" onclick="go('calendar',this)"><i class="ti ti-calendar-event"></i><span class="snl">تقویم</span></button>
+      <button class="sni" id="nav-timetrack" onclick="go('timetrack',this)"><i class="ti ti-clock-hour-4"></i><span class="snl">Time Tracking</span></button>
       <button class="sni" id="nav-resources" onclick="go('resources',this)"><i class="ti ti-users"></i><span class="snl">منابع</span></button>
       <button class="sni" id="nav-reports" onclick="go('reports',this)"><i class="ti ti-chart-bar"></i><span class="snl">گزارش‌ها</span></button>
       <button class="sni" id="nav-projects" onclick="go('projects',this)"><i class="ti ti-folder"></i><span class="snl">پروژه‌ها</span></button>
@@ -483,27 +609,38 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,sans-serif;c
       </div>
       <div class="addrow">
         <input id="tl-nn" placeholder="نام وظیفه جدید...">
-        <select id="tl-nm" class="fsel"></select>
+        <div style="position:relative">
+          <input id="tl-nm" class="fsel" placeholder="ماژول..." list="tl-nm-list" style="width:130px">
+          <datalist id="tl-nm-list"></datalist>
+        </div>
         <select id="tl-np" class="fsel"><option>P0</option><option selected>P1</option><option>P2</option><option>P3</option></select>
-        <select id="tl-no" class="fsel"></select>
+        <div style="position:relative">
+          <input id="tl-no" class="fsel" placeholder="مالک..." list="tl-no-list" style="width:120px">
+          <datalist id="tl-no-list"></datalist>
+        </div>
         <select id="tl-ns2" class="fsel"><option>Not started</option><option>In progress</option><option>Blocked</option><option>Completed</option></select>
         <div class="dp-wrap" style="width:96px"><input class="dp-inp sm" id="tl-nst" placeholder="شروع" readonly onclick="dpOpen(this)"><i class="ti ti-calendar dp-ico" style="font-size:13px"></i></div>
         <div class="dp-wrap" style="width:96px"><input class="dp-inp sm" id="tl-ned" placeholder="پایان" readonly onclick="dpOpen(this)"><i class="ti ti-calendar dp-ico" style="font-size:13px"></i></div>
+        <input id="tl-nc" class="fsel" placeholder="کامنت..." style="width:140px">
+        <input id="tl-nl" class="fsel" placeholder="لینک فایل..." style="width:150px">
         <button class="btn btn-p btn-sm" onclick="tlAdd()"><i class="ti ti-plus"></i> افزودن</button>
       </div>
       <div class="tblsc">
         <table class="tltbl">
           <thead><tr>
-            <th style="width:26px"></th><th style="width:36px" onclick="tlSort('taskId')">ID</th>
-            <th style="width:110px" onclick="tlSort('module')">ماژول</th><th style="width:40px">تاریخ</th>
-            <th style="width:140px" onclick="tlSort('sub')">زیروظیفه</th>
-            <th style="width:28px">Mrg</th><th style="width:34px">Out</th><th style="width:28px">ERP</th>
-            <th style="width:44px" onclick="tlSort('priority')">اولویت</th>
-            <th style="width:88px" onclick="tlSort('owner')">مالک</th>
-            <th style="width:76px" onclick="tlSort('status')">وضعیت</th>
-            <th style="width:68px" onclick="tlSort('start')">شروع</th>
-            <th style="width:68px" onclick="tlSort('end')">پایان</th>
-            <th style="width:62px">Milestone</th><th style="width:48px">Deliv.</th><th style="width:28px"></th>
+            <th style="width:56px"></th>
+            <th style="width:36px" onclick="tlSort('taskId')">ID</th>
+            <th style="width:130px" onclick="tlSort('module')">ماژول</th>
+            <th style="width:160px" onclick="tlSort('sub')">زیروظیفه</th>
+            <th style="width:50px" onclick="tlSort('priority')">اولویت</th>
+            <th style="width:100px" onclick="tlSort('owner')">مالک</th>
+            <th style="width:86px" onclick="tlSort('status')">وضعیت</th>
+            <th style="width:78px" onclick="tlSort('start')">شروع</th>
+            <th style="width:78px" onclick="tlSort('end')">پایان</th>
+            <th style="width:80px" onclick="tlSort('_duration')">بازه (روز)</th>
+            <th style="width:90px" onclick="tlSort('_daysleft')">Days Left</th>
+            <th style="width:160px" onclick="tlSort('comment')">کامنت</th>
+            <th style="width:130px">لینک فایل</th>
           </tr></thead>
           <tbody id="tl-body"></tbody>
         </table>
@@ -512,7 +649,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,sans-serif;c
     </div>
     <!-- TASKS -->
     <div id="page-tasks" class="page" style="flex-direction:column;overflow:hidden">
-      <div class="vtabs"><div class="vtab act"><i class="ti ti-list"></i> لیست</div><div class="vtab"><i class="ti ti-layout-kanban"></i> بورد</div></div>
+      <div class="vtabs"><div class="vtab act" id="vt-list" onclick="switchView('list',this)"><i class="ti ti-list"></i> لیست</div><div class="vtab" id="vt-board" onclick="switchView('board',this)"><i class="ti ti-layout-kanban"></i> بورد</div></div>
       <div class="fbar">
         <button class="fchip act" id="fc-all" onclick="tkF('',this)"><i class="ti ti-list-check"></i> همه</button>
         <button class="fchip" onclick="tkF('در جریان',this)"><i class="ti ti-player-play"></i> در جریان</button>
@@ -524,11 +661,58 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,sans-serif;c
         <div class="sinp" style="margin-right:auto"><i class="ti ti-search"></i><input id="tk-srch" placeholder="جستجو..." oninput="renderTasks()"></div>
       </div>
       <div style="padding:7px 14px;border-bottom:1px solid var(--brd);display:flex;gap:7px;align-items:center;background:var(--card);flex-shrink:0">
-        <input id="tk-q" style="flex:1;border:none;outline:none;font-size:13px;color:var(--text);background:transparent;font-family:inherit" placeholder="+ وظیفه جدید — Enter برای ثبت...">
-        <button class="btn btn-p btn-sm" onclick="tkQuick()"><i class="ti ti-plus"></i> افزودن</button>
+        <input id="tk-q" style="flex:1;border:none;outline:none;font-size:13px;color:var(--text);background:transparent;font-family:inherit" placeholder="نام وظیفه را بنویسید و Enter بزنید...">
+        <button class="btn btn-sm" onclick="openModal('task')" title="وظیفه با جزئیات کامل"><i class="ti ti-adjustments"></i> جزئیات</button>
+        <button class="btn btn-p btn-sm" onclick="tkQuick()"><i class="ti ti-plus"></i> افزودن سریع</button>
       </div>
-      <div style="overflow-y:auto;flex:1;background:var(--card)"><div id="tk-list"></div></div>
+      <div id="tk-list-wrap" style="overflow-y:auto;flex:1;background:var(--card)"><div id="tk-list"></div></div>
+      <div id="tk-board-wrap" style="display:none;flex:1;overflow:hidden"><div class="kb-wrap" id="kb-wrap"></div></div>
     </div>
+    <!-- CALENDAR -->
+    <div id="page-calendar" class="page" style="flex-direction:column;overflow:hidden">
+      <div class="cal-wrap">
+        <div class="cal-hdr">
+          <div class="cal-title" id="cal-title">—</div>
+          <div class="cal-nav">
+            <button onclick="calNav(-1)"><i class="ti ti-arrow-right"></i></button>
+            <button onclick="calNav(1)"><i class="ti ti-arrow-left"></i></button>
+            <button onclick="calGoToday()">امروز</button>
+          </div>
+          <select class="fsel" id="cal-fp" onchange="renderCal()" style="margin-right:auto"><option value="">همه پروژه‌ها</option></select>
+          <div style="display:flex;gap:6px">
+            <button class="gbtn za" id="cal-v-m" onclick="calView('month',this)">ماه</button>
+            <button class="gbtn" id="cal-v-w" onclick="calView('week',this)">هفته</button>
+          </div>
+        </div>
+        <div class="cal-body">
+          <div class="cal-grid" id="cal-dow-row"></div>
+          <div class="cal-grid" id="cal-grid" style="margin-top:6px"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIME TRACKING -->
+    <div id="page-timetrack" class="page" style="flex-direction:column;overflow:hidden">
+      <div class="gctb">
+        <div class="tt-timer">
+          <div class="tt-timer-disp" id="tt-disp">00:00:00</div>
+          <select class="fsel" id="tt-task-sel" style="flex:1;min-width:0"></select>
+          <button class="btn btn-p btn-sm" id="tt-start-btn" onclick="ttToggle()"><i class="ti ti-player-play"></i> شروع</button>
+          <button class="btn btn-sm" onclick="ttLog()" title="ثبت دستی"><i class="ti ti-plus"></i> ثبت دستی</button>
+        </div>
+      </div>
+      <div style="overflow-y:auto;flex:1">
+        <div class="card" style="margin:12px">
+          <div class="ch"><span class="ct">خلاصه ساعت‌کاری تیم</span></div>
+          <div id="tt-summary"></div>
+        </div>
+        <div class="card" style="margin:12px">
+          <div class="ch"><span class="ct">لاگ زمانی</span></div>
+          <div id="tt-log-list"></div>
+        </div>
+      </div>
+    </div>
+
     <!-- RESOURCES -->
     <div id="page-resources" class="page scroll">
       <div class="two">
@@ -559,54 +743,209 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,sans-serif;c
 </div>
 <script id="edata" type="application/json"></script>
 <script>
-/* DATE PICKER */
-var dpY=1403,dpM=1,dpISO='',dpMode='day',dpAnchor=null;
-var JMF=['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
-var JDOW=['ش','ی','د','س','چ','پ','ج'];
-function j2g(jy,jm,jd){var jy2=jy-979,jm2=jm-1,jd2=jd-1,jdn,i,gdn,leap,gy,gm,gd;jdn=365*jy2+Math.floor(jy2/33)*8+Math.floor(((jy2%33)+3)/4);for(i=0;i<jm2;i++)jdn+=[31,31,31,31,31,31,30,30,30,30,30,29][i];jdn+=jd2;gdn=jdn+79;gy=1600+400*Math.floor(gdn/146097);gdn=gdn%146097;leap=true;if(gdn>=36525){gdn--;gy+=100*Math.floor(gdn/36524);gdn=gdn%36524;if(gdn>=365)gdn++;else leap=false;}gy+=4*Math.floor(gdn/1461);gdn=gdn%1461;if(gdn>=366){leap=false;gdn--;gy+=Math.floor(gdn/365);gdn=gdn%365;}for(i=0;gdn>=[31,leap?29:28,31,30,31,30,31,31,30,31,30,31][i];i++)gdn-=[31,leap?29:28,31,30,31,30,31,31,30,31,30,31][i];gm=i+1;gd=gdn+1;return{y:gy,m:gm,d:gd};}
-function g2j(gy,gm,gd){var jd2=[31,31,31,31,31,31,30,30,30,30,30,29],gy2=gm>2?gy+1:gy,days=(365*gy)+Math.floor((gy2+3)/4)-Math.floor((gy2+99)/100)+Math.floor((gy2+399)/400)-80+gd+[0,31,59,90,120,151,181,212,243,273,304,334][gm-1],jy=Math.floor(days/365.25)-1570;days-=365*jy+Math.floor(jy/4)+Math.floor(jy/33)*8+Math.floor(((jy%33)+3)/4)+78;jy+=1474;var jm,jd;if(days>286){jy++;days-=286;jm=0;while(jm<5&&days>jd2[jm]){days-=jd2[jm];jm++;}jm+=7;}else{jm=0;while(days>jd2[jm+6]){days-=jd2[jm+6];jm++;}jm+=1;}jd=days;return{y:jy,m:jm,d:jd};}
-function jDIM(y,m){if(m<=6)return 31;if(m<=11)return 30;var g=j2g(y,12,29),l=(g.y%4==0&&g.y%100!=0)||(g.y%400==0);return l?30:29;}
-function iso2j(iso){if(!iso)return null;var p=iso.split('-');return p.length<3?null:g2j(+p[0],+p[1],+p[2]);}
-function j2iso(y,m,d){var g=j2g(y,m,d);return g.y+'-'+String(g.m).padStart(2,'0')+'-'+String(g.d).padStart(2,'0');}
-function iso2disp(iso){if(!iso)return '';var j=iso2j(iso);return j?j.y+'/'+String(j.m).padStart(2,'0')+'/'+String(j.d).padStart(2,'0'):iso;}
-function todayJ(){var n=new Date();return g2j(n.getFullYear(),n.getMonth()+1,n.getDate());}
-function todayISO(){var n=new Date();return n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0')+'-'+String(n.getDate()).padStart(2,'0');}
-function dpOpen(el){dpAnchor=el;dpISO=el.dataset.iso||'';var j=dpISO?iso2j(dpISO):todayJ();dpY=j.y;dpM=j.m;dpMode='day';dpRender();var popup=document.getElementById('dp-popup');popup.classList.add('open');var rect=el.getBoundingClientRect(),top=rect.bottom+4,left=rect.left;if(left+280>window.innerWidth)left=window.innerWidth-284;if(top+380>window.innerHeight)top=rect.top-384;if(top<4)top=4;if(left<4)left=4;popup.style.top=top+'px';popup.style.left=left+'px';}
-function dpClose(){document.getElementById('dp-popup').classList.remove('open');dpAnchor=null;}
-function dpNav(d){if(dpMode==='day'){dpM+=d;if(dpM>12){dpM=1;dpY++;}if(dpM<1){dpM=12;dpY--;}}else if(dpMode==='month'){dpY+=d;}else{dpY+=d*20;}dpRender();}
-function dpToggleMode(){dpMode=dpMode==='day'?'month':dpMode==='month'?'year':'day';dpRender();}
-function dpToday(){var j=todayJ();dpY=j.y;dpM=j.m;dpISO=todayISO();dpMode='day';dpRender();}
-function dpClear(){dpISO='';if(dpAnchor){dpAnchor.value='';dpAnchor.dataset.iso='';}dpClose();}
-function dpConfirm(){if(dpAnchor){dpAnchor.value=iso2disp(dpISO);dpAnchor.dataset.iso=dpISO||'';}dpClose();}
-function dpSelDay(d){dpISO=j2iso(dpY,dpM,d);dpRender();}
-function dpSelMonth(m){dpM=m;dpMode='day';dpRender();}
-function dpSelYear(y){dpY=y;dpMode='month';dpRender();}
-function dpNavPrev(d){dpM--;if(dpM<1){dpM=12;dpY--;}dpISO=j2iso(dpY,dpM,d);dpRender();}
-function dpNavNext(d){dpM++;if(dpM>12){dpM=1;dpY++;}dpISO=j2iso(dpY,dpM,d);dpRender();}
-function dpRender(){
-  var jSel=dpISO?iso2j(dpISO):null;
-  document.getElementById('dp-htitle').textContent=JMF[dpM-1]+' '+dpY;
-  document.getElementById('dp-hsel').textContent=jSel?jSel.d+' '+JMF[jSel.m-1]+' '+jSel.y:'تاریخی انتخاب نشده';
-  document.getElementById('dp-hsub').textContent=dpISO||'انتخاب تاریخ';
-  var inner=document.getElementById('dp-inner'),h='';
+/* DATE PICKER - Gregorian */
+var dpY=(new Date()).getFullYear(),dpM=(new Date()).getMonth()+1,dpISO='',dpMode='day',dpAnchor=null,dpAnchorId=null;
+var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+var MONTHS_FA=['ژانویه','فوریه','مارس','آوریل','مه','ژوئن','ژوئیه','اوت','سپتامبر','اکتبر','نوامبر','دسامبر'];
+var DAYS=['ی','د','س','چ','پ','ج','ش'];
+
+function pad2(n){return String(n).padStart(2,'0');}
+function todayISO(){var n=new Date();return n.getFullYear()+'-'+pad2(n.getMonth()+1)+'-'+pad2(n.getDate());}
+function iso2disp(iso){
+  if(!iso)return '';
+  var p=iso.split('-');
+  if(p.length<3)return iso;
+  return p[2]+' '+MONTHS_FA[+p[1]-1]+' '+p[0];
+}
+function daysInMonth(y,m){return new Date(y,m,0).getDate();}
+function firstDayOfMonth(y,m){
+  // 0=Sun,1=Mon,...,6=Sat  -> convert to Sat=0,Sun=1,...,Fri=6
+  var d=new Date(y,m-1,1).getDay();
+  return (d+1)%7;
+}
+
+function dpOpen(el){
+  dpAnchor=el;
+  dpAnchorId=el.id||null;
+  var popup=document.getElementById('dp-popup');
+  if(popup)popup.dataset.anchorId=el.id||'';
+  dpISO=el.dataset.iso||'';
+  if(dpISO){
+    var p=dpISO.split('-');
+    dpY=+p[0];dpM=+p[1];
+  } else {
+    var n=new Date();dpY=n.getFullYear();dpM=n.getMonth()+1;
+  }
+  dpMode='day';
+  dpRender();
+  if(!popup)return;
+  popup.classList.add('open');
+  var rect=el.getBoundingClientRect();
+  var top=rect.bottom+4,left=rect.left;
+  if(left+280>window.innerWidth)left=window.innerWidth-284;
+  if(top+400>window.innerHeight)top=rect.top-404;
+  if(top<4)top=4;if(left<4)left=4;
+  popup.style.top=top+'px';popup.style.left=left+'px';
+}
+
+function dpClose(){
+  var p=document.getElementById('dp-popup');
+  if(p)p.classList.remove('open');
+  setTimeout(function(){dpAnchor=null;dpAnchorId=null;},50);
+}
+
+function dpGetAnchor(){
+  var el=dpAnchor;
+  if(!el&&dpAnchorId)el=document.getElementById(dpAnchorId);
+  if(!el){
+    var popup=document.getElementById('dp-popup');
+    if(popup&&popup.dataset.anchorId)el=document.getElementById(popup.dataset.anchorId);
+  }
+  return el;
+}
+
+function dpApply(){
+  var el=dpGetAnchor();
+  if(el&&dpISO){
+    el.value=iso2disp(dpISO);
+    el.dataset.iso=dpISO;
+    try{el.dispatchEvent(new Event('change'));}catch(e){}
+  }
+}
+
+function dpNav(d){
   if(dpMode==='day'){
-    var tod=todayJ(),dim=jDIM(dpY,dpM),g1=j2g(dpY,dpM,1),dow=(new Date(g1.y,g1.m-1,g1.d).getDay()+1)%7;
-    var prevDim=jDIM(dpM===1?dpY-1:dpY,dpM===1?12:dpM-1);
+    dpM+=d;
+    if(dpM>12){dpM=1;dpY++;}
+    if(dpM<1){dpM=12;dpY--;}
+  } else if(dpMode==='month'){
+    dpY+=d;
+  } else {
+    dpY+=d*12;
+  }
+  dpRender();
+}
+
+function dpToggleMode(){
+  if(dpMode==='day')dpMode='month';
+  else if(dpMode==='month')dpMode='year';
+  else dpMode='day';
+  dpRender();
+}
+
+function dpToday(){
+  var n=new Date();dpY=n.getFullYear();dpM=n.getMonth()+1;
+  dpISO=todayISO();
+  dpApply();
+  dpRender();
+}
+
+function dpClear(){
+  dpISO='';
+  var el=dpGetAnchor();
+  if(el){el.value='';el.dataset.iso='';}
+  dpClose();
+}
+
+function dpConfirm(){
+  if(dpISO)dpApply();
+  dpClose();
+}
+
+function dpPickDay(d){
+  dpISO=dpY+'-'+pad2(dpM)+'-'+pad2(d);
+  dpApply();
+  dpRender();
+  setTimeout(function(){dpClose();},180);
+}
+
+function dpPickMonth(m){dpM=m;dpMode='day';dpRender();}
+function dpPickYear(y){dpY=y;dpMode='month';dpRender();}
+
+function dpRender(){
+  var htitle=document.getElementById('dp-htitle');
+  var hsel=document.getElementById('dp-hsel');
+  var hsub=document.getElementById('dp-hsub');
+  var inner=document.getElementById('dp-inner');
+  if(!htitle||!inner)return;
+
+  htitle.textContent=MONTHS_FA[dpM-1]+' '+dpY;
+
+  if(dpISO){
+    var p=dpISO.split('-');
+    hsel.textContent=p[2]+' '+MONTHS_FA[+p[1]-1]+' '+p[0];
+    hsub.textContent=dpISO;
+  } else {
+    hsel.textContent='تاریخی انتخاب نشده';
+    hsub.textContent='انتخاب تاریخ';
+  }
+
+  var h='';
+  if(dpMode==='day'){
+    var today=new Date(),ty=today.getFullYear(),tm=today.getMonth()+1,td=today.getDate();
+    var selY=0,selM=0,selD=0;
+    if(dpISO){var p=dpISO.split('-');selY=+p[0];selM=+p[1];selD=+p[2];}
+    var dim=daysInMonth(dpY,dpM);
+    var firstDay=firstDayOfMonth(dpY,dpM);
+
     h='<div class="dp-body"><div class="dp-dow">';
-    for(var di=0;di<7;di++)h+='<div class="dp-dowc">'+JDOW[di]+'</div>';
+    var dayNames=['ش','ی','د','س','چ','پ','ج'];
+    for(var i=0;i<7;i++)h+='<div class="dp-dowc">'+dayNames[i]+'</div>';
     h+='</div><div class="dp-days">';
-    for(var pi=dow-1;pi>=0;pi--){var pd=prevDim-pi;h+='<div class="dp-day om" onclick="dpNavPrev('+pd+')">'+pd+'</div>';}
-    for(var d=1;d<=dim;d++){var isT=tod.y===dpY&&tod.m===dpM&&tod.d===d,isS=jSel&&jSel.y===dpY&&jSel.m===dpM&&jSel.d===d,gd2=j2g(dpY,dpM,d),isFri=new Date(gd2.y,gd2.m-1,gd2.d).getDay()===5,cls='dp-day';if(isT)cls+=' tod';if(isS)cls+=' sel';if(isFri&&!isS)cls+=' we';if(isFri&&isS)cls+=' sel we';h+='<div class="'+cls+'" onclick="dpSelDay('+d+')">'+d+'</div>';}
-    var tot2=dow+dim,nf=(7-tot2%7)%7;for(var nd=1;nd<=nf;nd++)h+='<div class="dp-day om" onclick="dpNavNext('+nd+')">'+nd+'</div>';
+
+    // blank cells
+    for(var i=0;i<firstDay;i++)h+='<div class="dp-day om"></div>';
+
+    for(var d=1;d<=dim;d++){
+      var isT=(ty===dpY&&tm===dpM&&td===d);
+      var isS=(selY===dpY&&selM===dpM&&selD===d);
+      // check if friday (day 6 in JS = saturday, day 5 = friday)
+      var dow=new Date(dpY,dpM-1,d).getDay();
+      var isFri=(dow===5);
+      var cls='dp-day';
+      if(isS)cls+=' sel';
+      else if(isT)cls+=' tod';
+      if(isFri&&!isS)cls+=' we';
+      h+='<div class="'+cls+'" onclick="dpPickDay('+d+')">'+d+'</div>';
+    }
+    // fill remaining cells
+    var total=firstDay+dim;
+    var remain=(7-total%7)%7;
+    for(var i=0;i<remain;i++)h+='<div class="dp-day om"></div>';
     h+='</div></div>';
-  }else if(dpMode==='month'){
-    h='<div class="dp-months">';for(var mi=0;mi<JMF.length;mi++){var s=jSel&&jSel.y===dpY&&jSel.m===mi+1;h+='<div class="dp-mc'+(s?' sel':'')+'" onclick="dpSelMonth('+(mi+1)+')">'+JMF[mi]+'</div>';}h+='</div>';
-  }else{
-    var ty=todayJ().y,sy=Math.floor((dpY-1)/20)*20+1;h='<div class="dp-years">';for(var yi=sy;yi<sy+20;yi++){var s=jSel&&jSel.y===yi,cur=yi===ty;h+='<div class="dp-yc'+(s?' sel':cur?' cur':'')+'" onclick="dpSelYear('+yi+')">'+yi+'</div>';}h+='</div>';
+
+  } else if(dpMode==='month'){
+    h='<div class="dp-months">';
+    var selM2=0;if(dpISO){var p=dpISO.split('-');if(+p[0]===dpY)selM2=+p[1];}
+    for(var i=0;i<12;i++){
+      var isSel=(selM2===i+1);
+      h+='<div class="dp-mc'+(isSel?' sel':'')+'" onclick="dpPickMonth('+(i+1)+')">'+MONTHS_FA[i]+'</div>';
+    }
+    h+='</div>';
+
+  } else {
+    var today2=new Date(),ty2=today2.getFullYear();
+    var startY=dpY-6;
+    var selY2=0;if(dpISO)selY2=+dpISO.split('-')[0];
+    h='<div class="dp-years">';
+    for(var y=startY;y<startY+12;y++){
+      var isSel=(selY2===y);
+      var isCur=(y===ty2);
+      h+='<div class="dp-yc'+(isSel?' sel':isCur?' cur':'')+'" onclick="dpPickYear('+y+')">'+y+'</div>';
+    }
+    h+='</div>';
   }
   inner.innerHTML=h;
 }
-document.addEventListener('click',function(e){var popup=document.getElementById('dp-popup');if(popup&&popup.classList.contains('open')&&!popup.contains(e.target)&&e.target!==dpAnchor&&!(e.target.classList&&e.target.classList.contains('dp-inp'))){dpClose();}});
+
+document.addEventListener('click',function(e){
+  var popup=document.getElementById('dp-popup');
+  if(!popup||!popup.classList.contains('open'))return;
+  if(popup.contains(e.target))return;
+  if(e.target===dpAnchor)return;
+  if(e.target.classList&&e.target.classList.contains('dp-inp'))return;
+  dpClose();
+});
 
 /* APP STATE */
 var SK='proyekar_v7';
@@ -615,11 +954,10 @@ var TL_MODS=['محصولات و کالاها','عملیات انبار','فرو�
 var TL_ST=['Not started','In progress','Blocked','Completed'];
 var TL_PR=['P0','P1','P2','P3'];
 function defState(){return{projects:[{id:1,name:'توسعه اپلیکیشن موبایل',color:'blue',manager:'علی رضایی',start:'2026-01-01',end:'2026-06-30',progress:72},{id:2,name:'بازطراحی وب‌سایت',color:'purple',manager:'سارا احمدی',start:'2026-02-01',end:'2026-05-31',progress:45},{id:3,name:'سیستم مدیریت انبار',color:'teal',manager:'رضا محمدی',start:'2026-03-01',end:'2026-08-31',progress:28}],tasks:[{id:1,projId:1,name:'توسعه اپلیکیشن موبایل',isSummary:true,dep:null,start:'2026-01-01',end:'2026-06-30',pct:72,status:'در جریان',assignee:'علی رضایی',priority:'بالا',parentId:null},{id:2,projId:1,name:'تحلیل نیازمندی‌ها',isSummary:false,dep:null,start:'2026-01-01',end:'2026-01-20',pct:100,status:'تکمیل شده',assignee:'علی رضایی',priority:'بالا',parentId:1},{id:3,projId:1,name:'طراحی UI/UX',isSummary:false,dep:2,start:'2026-01-20',end:'2026-02-20',pct:100,status:'تکمیل شده',assignee:'سارا احمدی',priority:'بالا',parentId:1},{id:4,projId:1,name:'توسعه Back-end',isSummary:false,dep:3,start:'2026-02-01',end:'2026-04-30',pct:65,status:'در جریان',assignee:'رضا محمدی',priority:'بالا',parentId:1},{id:5,projId:1,name:'توسعه Front-end',isSummary:false,dep:3,start:'2026-02-15',end:'2026-05-15',pct:50,status:'در جریان',assignee:'نیما کریمی',priority:'متوسط',parentId:1},{id:6,projId:1,name:'تست و QA',isSummary:false,dep:4,start:'2026-05-01',end:'2026-06-15',pct:0,status:'در انتظار',assignee:'مریم حسینی',priority:'متوسط',parentId:1},{id:7,projId:1,name:'انتشار v1.0',isSummary:false,dep:6,start:'2026-06-30',end:'2026-06-30',pct:0,status:'در انتظار',assignee:'علی رضایی',priority:'بالا',parentId:1,isMilestone:true},{id:8,projId:2,name:'بازطراحی وب‌سایت',isSummary:true,dep:null,start:'2026-02-01',end:'2026-05-31',pct:45,status:'در جریان',assignee:'سارا احمدی',priority:'بالا',parentId:null},{id:9,projId:2,name:'تحقیق رقبا',isSummary:false,dep:null,start:'2026-02-01',end:'2026-02-20',pct:100,status:'تکمیل شده',assignee:'سارا احمدی',priority:'متوسط',parentId:8},{id:10,projId:2,name:'وایرفریم',isSummary:false,dep:9,start:'2026-02-20',end:'2026-03-20',pct:80,status:'در جریان',assignee:'علی رضایی',priority:'بالا',parentId:8},{id:11,projId:2,name:'پیاده‌سازی',isSummary:false,dep:10,start:'2026-03-20',end:'2026-05-15',pct:20,status:'دیرکرد',assignee:'نیما کریمی',priority:'بالا',parentId:8},{id:12,projId:2,name:'تست',isSummary:false,dep:11,start:'2026-05-15',end:'2026-05-31',pct:0,status:'در انتظار',assignee:'مریم حسینی',priority:'متوسط',parentId:8},{id:13,projId:3,name:'سیستم مدیریت انبار',isSummary:true,dep:null,start:'2026-03-01',end:'2026-08-31',pct:28,status:'در جریان',assignee:'رضا محمدی',priority:'بالا',parentId:null},{id:14,projId:3,name:'جمع‌آوری نیازمندی‌ها',isSummary:false,dep:null,start:'2026-03-01',end:'2026-03-25',pct:100,status:'تکمیل شده',assignee:'رضا محمدی',priority:'بالا',parentId:13},{id:15,projId:3,name:'طراحی پایگاه داده',isSummary:false,dep:14,start:'2026-03-25',end:'2026-04-20',pct:60,status:'در جریان',assignee:'مریم حسینی',priority:'بالا',parentId:13},{id:16,projId:3,name:'توسعه ماژول ورودی',isSummary:false,dep:15,start:'2026-04-15',end:'2026-06-30',pct:0,status:'در انتظار',assignee:'علی رضایی',priority:'متوسط',parentId:13},{id:17,projId:3,name:'توسعه ماژول خروجی',isSummary:false,dep:15,start:'2026-05-01',end:'2026-07-15',pct:0,status:'در انتظار',assignee:'نیما کریمی',priority:'متوسط',parentId:13},{id:18,projId:3,name:'تحویل سیستم',isSummary:false,dep:17,start:'2026-08-31',end:'2026-08-31',pct:0,status:'در انتظار',assignee:'رضا محمدی',priority:'بالا',parentId:13,isMilestone:true}],members:[{id:1,name:'علی رضایی',role:'توسعه‌دهنده ارشد',avatar:'ع',color:'blue',load:85},{id:2,name:'سارا احمدی',role:'طراح UI/UX',avatar:'س',color:'purple',load:70},{id:3,name:'رضا محمدی',role:'مهندس Back-end',avatar:'ر',color:'teal',load:90},{id:4,name:'نیما کریمی',role:'توسعه‌دهنده Front-end',avatar:'ن',color:'amber',load:60},{id:5,name:'مریم حسینی',role:'مهندس QA',avatar:'م',color:'coral',load:45}],tlTasks:[{id:1,module:'محصولات و کالاها',taskId:'P1',date:'',sub:'گروه کالا',merge:true,output:false,erp:true,priority:'P0',owner:'علی رضایی',status:'In progress',start:'2026-06-07',end:'',milestone:'Milestone',deliverable:'File'},{id:2,module:'محصولات و کالاها',taskId:'P2',date:'',sub:'دسته کالا',merge:false,output:false,erp:true,priority:'P0',owner:'علی رضایی',status:'Not started',start:'',end:'',milestone:'Milestone',deliverable:'File'},{id:3,module:'محصولات و کالاها',taskId:'P3',date:'',sub:'کالا',merge:true,output:true,erp:true,priority:'P0',owner:'سارا احمدی',status:'In progress',start:'',end:'2026-06-07',milestone:'Milestone',deliverable:'File'},{id:4,module:'محصولات و کالاها',taskId:'P4',date:'',sub:'فهرست مواد',merge:false,output:true,erp:true,priority:'P0',owner:'سارا احمدی',status:'Blocked',start:'',end:'',milestone:'Milestone',deliverable:'File'},{id:5,module:'محصولات و کالاها',taskId:'P5',date:'',sub:'درخت مواد',merge:true,output:true,erp:true,priority:'P0',owner:'رضا محمدی',status:'Completed',start:'',end:'',milestone:'Milestone',deliverable:'File'},{id:6,module:'عملیات انبار',taskId:'W1',date:'',sub:'اطلاعات کالا در انبار',merge:true,output:false,erp:true,priority:'P0',owner:'رضا محمدی',status:'In progress',start:'2026-06-07',end:'',milestone:'Milestone',deliverable:'File'},{id:7,module:'عملیات انبار',taskId:'W2',date:'',sub:'ثبت انبارگردانی',merge:true,output:false,erp:true,priority:'P0',owner:'رضا محمدی',status:'In progress',start:'2026-06-07',end:'',milestone:'Milestone',deliverable:'File'},{id:8,module:'عملیات انبار',taskId:'W3',date:'',sub:'فهرست انبارگردانی',merge:false,output:false,erp:true,priority:'P0',owner:'نیما کریمی',status:'In progress',start:'2026-06-07',end:'',milestone:'Milestone',deliverable:'File'}],nextId:50,tlNextId:20,gcColl:[]};}
-var gcColl=new Set();
+var gcColl=new Set();var ttLogs=[];
 var S=loadS(),mMode=null,mEditId=null,tlSC='taskId',tlSA=true,tlHideDone=false,tlGroupBy=false,gcZM='day',gcCW=22,gcSel=null,tkSF='';
 function loadS(){
-  // Check localStorage first (fast load)
-  try{var r=localStorage.getItem(SK);if(r){var d=JSON.parse(r);if(d&&d.projects){if(d.gcColl)gcColl=new Set(d.gcColl||[]);return d;}}}catch(e){}
+  try{var r=localStorage.getItem(SK);if(r){var d=JSON.parse(r);if(d&&d.projects){if(d.gcColl)gcColl=new Set(d.gcColl||[]);if(d._ttLogs)ttLogs=d._ttLogs;return d;}}}catch(e){}
   return defState();
 }
 // Load from Firebase after page loads (overrides localStorage if newer)
@@ -641,6 +979,7 @@ function save(){
   try{
     var d=JSON.parse(JSON.stringify(S));
     d.gcColl=Array.from(gcColl);
+    d._ttLogs=ttLogs;
     localStorage.setItem(SK,JSON.stringify(d));
     // Save to Firebase
     d._ts=Date.now();
@@ -667,12 +1006,14 @@ function go(page,el){
   var navs=document.querySelectorAll('.sni');
   for(var j=0;j<navs.length;j++)navs[j].classList.remove('act');
   if(el)el.classList.add('act');
-  var titles={dashboard:'داشبورد',gantt:'گانت تقویمی',tasklist:'Task List',tasks:'وظایف',resources:'منابع',reports:'گزارش‌ها',projects:'پروژه‌ها'};
+  var titles={dashboard:'داشبورد',gantt:'گانت تقویمی',tasklist:'Task List',tasks:'وظایف',calendar:'تقویم',timetrack:'Time Tracking',resources:'منابع',reports:'گزارش‌ها',projects:'پروژه‌ها'};
   document.getElementById('pt').textContent=titles[page]||page;
   if(page==='dashboard')renderDash();
   else if(page==='gantt')gcRender();
   else if(page==='tasklist')renderTL();
-  else if(page==='tasks')renderTasks();
+  else if(page==='tasks'){renderTasks();if(curView==='board')renderKanban();}
+  else if(page==='calendar')renderCal();
+  else if(page==='timetrack')renderTT();
   else if(page==='resources')renderRes();
   else if(page==='reports')renderRep();
   else if(page==='projects')renderProj();
@@ -692,7 +1033,7 @@ function renderDash(){
   var rh='';for(var i=0;i<S.members.length;i++){var m=S.members[i];rh+='<div class="prow"><div class="aav" style="width:28px;height:28px;font-size:11px;background:'+C(m.color)+'">'+m.avatar+'</div><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:600">'+m.name+'</div><div style="font-size:10px;color:var(--t2)">'+m.role+'</div></div><div style="min-width:100px"><div class="pb"><div class="pbf" style="width:'+m.load+'%;background:'+(m.load>85?'#ff5252':m.load>65?'#ff9100':'#00c875')+'"></div></div><div style="font-size:10px;color:var(--t2);text-align:left;margin-top:2px">'+m.load+'%</div></div></div>';}
   document.getElementById('d-res').innerHTML=rh;
   var urgent=[],dlc=document.getElementById('dl-card');for(var i=0;i<S.tasks.length;i++){var t=S.tasks[i];if(!t.isSummary&&t.status!=='تکمیل شده'&&t.end)urgent.push(t);}
-  if(urgent.length){dlc.style.display='';var dh='';for(var i=0;i<Math.min(5,urgent.length);i++){var t=urgent[i];dh+='<div class="prow"><i class="ti ti-alarm" style="color:var(--red);font-size:14px"></i><div style="flex:1"><div style="font-size:12px;font-weight:600">'+t.name+'</div><div style="font-size:10px;color:var(--t2)">'+t.assignee+' · '+t.end+'</div></div><button class="cust '+(isLate(t)?'s-late':'s-prog')+'">'+(isLate(t)?'دیرکرد':'در پیشرفت')+'</button></div>';}document.getElementById('d-dl').innerHTML=dh;}else dlc.style.display='none';
+  if(urgent.length){dlc.style.display='';var dh='';for(var i=0;i<Math.min(5,urgent.length);i++){var t=urgent[i];dh+='<div class="prow"><i class="ti ti-alarm" style="color:var(--red);font-size:14px"></i><div style="flex:1"><div style="font-size:12px;font-weight:600">'+t.name+'</div><div style="font-size:10px;color:var(--t2)">'+t.assignee+(t.end?' · '+iso2disp(t.end):'')+'</div></div><button class="cust '+(isLate(t)?'s-late':'s-prog')+'">'+(isLate(t)?'دیرکرد':'در پیشرفت')+'</button></div>';}document.getElementById('d-dl').innerHTML=dh;}else dlc.style.display='none';
 }
 
 /* TASKS */
@@ -707,7 +1048,7 @@ function renderTasks(){
   for(var i=0;i<tasks.length;i++){
     var t=tasks[i],p=pm[t.projId]||{name:'—',color:'blue'},late=isLate(t);
     var mv=null;for(var j=0;j<S.members.length;j++){if(S.members[j].name===t.assignee){mv=S.members[j];break;}}
-    h+='<div class="tkgrid'+(t.status==='تکمیل شده'?' tkdone':'')+'" style="'+gc+'">'
+    h+='<div class="tkgrid'+(t.status==='تکمیل شده'?' tkdone':'')+tkRowClass(t)+'" style="'+gc+'">'
       +'<input type="checkbox" class="cb" '+(t.status==='تکمیل شده'?'checked':'')+' onchange="tkToggle('+t.id+',this.checked)">'
       +'<div style="display:flex;align-items:center;gap:6px;min-width:0"><div style="width:10px;height:10px;border-radius:50%;background:'+priClr(t.priority)+';flex-shrink:0"></div><span class="tknm" style="font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+t.name+'</span>'+(t.isMilestone?'<i class="ti ti-diamond" style="color:var(--pu);font-size:11px;flex-shrink:0"></i>':'')+'</div>'
       +'<span style="padding:2px 7px;border-radius:20px;font-size:10px;font-weight:600;background:'+C(p.color)+'22;color:'+C(p.color)+';overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:98px">'+p.name+'</span>'
@@ -718,11 +1059,27 @@ function renderTasks(){
   }
   if(!tasks.length)h+='<div style="text-align:center;padding:36px;color:var(--t2);font-size:13px">وظیفه‌ای یافت نشد</div>';
   document.getElementById('tk-list').innerHTML=h;
+  if(curView==='board')renderKanban();
 }
 function tkToggle(id,v){for(var i=0;i<S.tasks.length;i++){if(S.tasks[i].id===id){S.tasks[i].status=v?'تکمیل شده':'در انتظار';S.tasks[i].pct=v?100:0;break;}}save();renderTasks();showN(v?'تکمیل شد':'بازگشایی شد');}
 function tkCycle(id){var sts=['در انتظار','در جریان','تکمیل شده'];for(var i=0;i<S.tasks.length;i++){if(S.tasks[i].id===id){var idx=sts.indexOf(S.tasks[i].status);S.tasks[i].status=sts[(idx+1)%sts.length];if(S.tasks[i].status==='تکمیل شده')S.tasks[i].pct=100;break;}}save();renderTasks();showN('وضعیت تغییر کرد');}
-function tkQuick(){var inp=document.getElementById('tk-q'),name=inp.value.trim();if(!name)return;S.tasks.push({id:S.nextId++,projId:S.projects.length?S.projects[0].id:null,name:name,assignee:S.members.length?S.members[0].name:'',priority:'متوسط',start:todayISO(),end:'',status:'در انتظار',pct:0,isSummary:false,parentId:null,dep:null});inp.value='';save();renderTasks();showN('وظیفه اضافه شد');}
-document.addEventListener('keydown',function(e){if(e.key==='Enter'&&document.activeElement===document.getElementById('tk-q'))tkQuick();});
+function tkQuick(){
+  var inp=document.getElementById('tk-q');
+  if(!inp)return;
+  var name=inp.value.trim();
+  if(!name){showN('نام وظیفه را وارد کنید');inp.focus();return;}
+  var pid=null;
+  var fp=document.getElementById('tk-fp');
+  if(fp&&fp.value)pid=+fp.value;
+  else if(S.projects.length)pid=S.projects[0].id;
+  S.tasks.push({id:S.nextId++,projId:pid,name:name,
+    assignee:S.members.length?S.members[0].name:'',
+    priority:'متوسط',start:todayISO(),end:'',
+    status:'در انتظار',pct:0,isSummary:false,parentId:null,dep:null});
+  inp.value='';
+  save();renderTasks();showN('وظیفه اضافه شد ✓');
+}
+
 
 /* GANTT */
 function gcPD(s){if(!s)return new Date();var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
@@ -807,11 +1164,34 @@ function gcHT(){document.getElementById('gc-tt').classList.remove('show');}
 
 /* TASK LIST */
 function tlPopF(){
-  var mods=[],own=[],ms={},os={};for(var i=0;i<S.tlTasks.length;i++){var t=S.tlTasks[i];if(!ms[t.module]){mods.push(t.module);ms[t.module]=1;}if(!os[t.owner]){own.push(t.owner);os[t.owner]=1;}}
-  var fm=document.getElementById('tl-fmod'),cm=fm.value;fm.innerHTML='<option value="">همه ماژول‌ها</option>';for(var i=0;i<mods.length;i++)fm.innerHTML+='<option value="'+mods[i]+'" '+(mods[i]===cm?'selected':'')+'>'+mods[i]+'</option>';
-  var fo=document.getElementById('tl-fown'),co=fo.value;fo.innerHTML='<option value="">همه مالکان</option>';for(var i=0;i<own.length;i++)fo.innerHTML+='<option value="'+own[i]+'" '+(own[i]===co?'selected':'')+'>'+own[i]+'</option>';
-  var nm=document.getElementById('tl-nm');nm.innerHTML='<option value="">ماژول...</option>';for(var i=0;i<TL_MODS.length;i++)nm.innerHTML+='<option value="'+TL_MODS[i]+'">'+TL_MODS[i]+'</option>';
-  var no=document.getElementById('tl-no');no.innerHTML='<option value="">مالک...</option>';for(var i=0;i<S.members.length;i++)no.innerHTML+='<option>'+S.members[i].name+'</option>';
+  var mods=[],own=[],ms={},os={};
+  for(var i=0;i<S.tlTasks.length;i++){var t=S.tlTasks[i];if(!ms[t.module]){mods.push(t.module);ms[t.module]=1;}if(!os[t.owner]){own.push(t.owner);os[t.owner]=1;}}
+  // Filter dropdowns
+  var fm=document.getElementById('tl-fmod'),cm=fm.value;
+  fm.innerHTML='<option value="">همه ماژول‌ها</option>';
+  for(var i=0;i<mods.length;i++)fm.innerHTML+='<option value="'+mods[i]+'" '+(mods[i]===cm?'selected':'')+'>'+mods[i]+'</option>';
+  var fo=document.getElementById('tl-fown'),co=fo.value;
+  fo.innerHTML='<option value="">همه مالکان</option>';
+  for(var i=0;i<own.length;i++)fo.innerHTML+='<option value="'+own[i]+'" '+(own[i]===co?'selected':'')+'>'+own[i]+'</option>';
+  // Datalist for module input (combo: type or select)
+  var nmList=document.getElementById('tl-nm-list');
+  if(nmList){
+    nmList.innerHTML='';
+    var allMods=TL_MODS.slice();
+    for(var i=0;i<mods.length;i++){if(allMods.indexOf(mods[i])<0)allMods.push(mods[i]);}
+    for(var i=0;i<allMods.length;i++)nmList.innerHTML+='<option value="'+allMods[i]+'">';
+  }
+  // Datalist for owner input (combo: type or select)
+  var noList=document.getElementById('tl-no-list');
+  if(noList){
+    noList.innerHTML='';
+    for(var i=0;i<S.members.length;i++)noList.innerHTML+='<option value="'+S.members[i].name+'">';
+    // also add existing owners not in members
+    for(var i=0;i<own.length;i++){
+      var found=false;for(var j=0;j<S.members.length;j++){if(S.members[j].name===own[i]){found=true;break;}}
+      if(!found)noList.innerHTML+='<option value="'+own[i]+'">';
+    }
+  }
 }
 function renderTL(){
   tlPopF();
@@ -820,49 +1200,161 @@ function renderTL(){
   var rows=[];for(var i=0;i<S.tlTasks.length;i++){var t=S.tlTasks[i];if(tlHideDone&&t.status==='Completed')continue;if(fM&&t.module!==fM)continue;if(fS&&t.status!==fS)continue;if(fP&&t.priority!==fP)continue;if(fO&&t.owner!==fO)continue;if(fSr&&t.sub.toLowerCase().indexOf(fSr)<0&&t.module.toLowerCase().indexOf(fSr)<0)continue;rows.push(t);}
   rows.sort(function(a,b){var av=a[tlSC]||'',bv=b[tlSC]||'';if(typeof av==='boolean'){av=av?1:0;bv=bv?1:0;}return(tlSA?1:-1)*String(av).localeCompare(String(bv),'fa');});
   var html='';
-  if(tlGroupBy){var g={},gk=[];for(var i=0;i<rows.length;i++){var t=rows[i];if(!g[t.module]){g[t.module]=[];gk.push(t.module);}g[t.module].push(t);}for(var i=0;i<gk.length;i++){html+='<tr class="gh2"><td colspan="16"><i class="ti ti-folder" style="font-size:11px;vertical-align:-1px;margin-left:4px"></i>'+gk[i]+' ('+g[gk[i]].length+')</td></tr>';for(var j=0;j<g[gk[i]].length;j++)html+=tlRow(g[gk[i]][j]);}}
+  if(tlGroupBy){var g={},gk=[];for(var i=0;i<rows.length;i++){var t=rows[i];if(!g[t.module]){g[t.module]=[];gk.push(t.module);}g[t.module].push(t);}for(var i=0;i<gk.length;i++){html+='<tr class="gh2"><td colspan="12"><i class="ti ti-folder" style="font-size:11px;vertical-align:-1px;margin-left:4px"></i>'+gk[i]+' ('+g[gk[i]].length+')</td></tr>';for(var j=0;j<g[gk[i]].length;j++)html+=tlRow(g[gk[i]][j]);}}
   else{for(var i=0;i<rows.length;i++)html+=tlRow(rows[i]);}
   document.getElementById('tl-body').innerHTML=html||'<tr><td colspan="16" style="text-align:center;padding:24px;color:var(--t2)">وظیفه‌ای یافت نشد</td></tr>';
   var done=0,prog=0;for(var i=0;i<rows.length;i++){if(rows[i].status==='Completed')done++;if(rows[i].status==='In progress')prog++;}
   document.getElementById('tl-count').textContent=rows.length+' وظیفه';
   document.getElementById('tl-stats').textContent='تکمیل: '+done+' · در جریان: '+prog+' · باقی: '+(rows.length-done);
 }
+function tlDuration(start,end){
+  if(!start||!end)return '—';
+  var a=new Date(start),b=new Date(end);
+  if(isNaN(a)||isNaN(b))return '—';
+  var diff=Math.round((b-a)/86400000);
+  return diff>=0?diff+' روز':'—';
+}
+function tlDaysLeft(end,status){
+  if(!end)return '—';
+  if(status==='Completed')return '<span style="color:var(--green);font-weight:600">✓ تکمیل</span>';
+  var today=new Date();today.setHours(0,0,0,0);
+  var e=new Date(end);e.setHours(0,0,0,0);
+  var diff=Math.round((e-today)/86400000);
+  if(diff>0)return '<span style="color:var(--blue);font-weight:600">'+diff+' روز</span>';
+  if(diff===0)return '<span style="color:var(--orange);font-weight:700">امروز!</span>';
+  return '<span style="color:var(--red);font-weight:700">'+Math.abs(diff)+' روز گذشته</span>';
+}
 function tlRow(t){
   var tid=t.id;
-  return '<tr class="'+(t.status==='Completed'?'done':'')+'">'
-    +'<td style="text-align:center"><input type="checkbox" class="cb" '+(t.status==='Completed'?'checked':'')+' onchange="tlTog('+tid+',this.checked)"></td>'
-    +'<td style="text-align:center;color:var(--t2)">'+t.taskId+'</td><td><span class="mb2">'+t.module+'</span></td>'
-    +'<td style="color:var(--t2);font-size:10px">'+(t.date||'')+'</td>'
-    +'<td class="ctn ed" onclick="tlEd('+tid+',\'sub\',this)">'+t.sub+'</td>'
-    +'<td style="text-align:center"><input type="checkbox" class="tcb" '+(t.merge?'checked':'')+' onchange="tlF('+tid+',\'merge\',this.checked)"></td>'
-    +'<td style="text-align:center"><input type="checkbox" class="tcb" '+(t.output?'checked':'')+' onchange="tlF('+tid+',\'output\',this.checked)"></td>'
-    +'<td style="text-align:center;font-size:10px;color:var(--t2)">'+(t.erp?'ERP':'')+'</td>'
-    +'<td style="text-align:center"><span class="bdg '+prC(t.priority)+'" onclick="tlCPr('+tid+')" style="cursor:pointer;border-radius:20px">'+t.priority+'</span></td>'
-    +'<td style="font-size:10px;overflow:hidden;text-overflow:ellipsis">'+t.owner+'</td>'
-    +'<td><span class="bdg '+stC2(t.status)+'" onclick="tlCSt('+tid+')" style="cursor:pointer;border-radius:20px">'+t.status+'</span></td>'
-    +'<td class="ed" onclick="tlEd('+tid+',\'start\',this)" style="font-size:10px;color:var(--t2)">'+(t.start?iso2disp(t.start):'—')+'</td>'
-    +'<td class="ed" onclick="tlEd('+tid+',\'end\',this)" style="font-size:10px;color:var(--t2)">'+(t.end?iso2disp(t.end):'—')+'</td>'
-    +'<td style="font-size:10px;color:var(--t2)">'+(t.milestone||'')+'</td><td style="font-size:10px;color:var(--t2)">'+(t.deliverable||'')+'</td>'
-    +'<td style="text-align:center"><button class="abtn" onclick="tlDel('+tid+')"><i class="ti ti-trash"></i></button></td></tr>';
+  var row='<tr class="'+(t.status==='Completed'?'done':'')+'">';
+  row+='<td style="text-align:center;white-space:nowrap;padding:0 4px">'
+    +'<button class="abtn" onclick="tlEdit('+tid+')" title="ویرایش"><i class="ti ti-edit"></i></button>'
+    +'<button class="abtn" onclick="tlDel('+tid+')" title="حذف"><i class="ti ti-trash"></i></button>'
+    +'</td>';
+  row+='<td style="text-align:center"><input type="checkbox" class="cb" '+(t.status==='Completed'?'checked':'')+' onchange="tlTog('+tid+',this.checked)"></td>';
+  row+='<td style="text-align:center;color:var(--t2)">'+t.taskId+'</td>';
+  row+='<td><span class="mb2">'+t.module+'</span></td>';
+  row+='<td class="ctn ed" onclick="tlEd('+tid+',\'sub\',this)">'+t.sub+'</td>';
+  row+='<td style="text-align:center"><span class="bdg '+prC(t.priority)+'" onclick="tlCPr('+tid+')" style="cursor:pointer;border-radius:20px">'+t.priority+'</span></td>';
+  row+='<td style="font-size:10px;overflow:hidden;text-overflow:ellipsis">'+t.owner+'</td>';
+  row+='<td><span class="bdg '+stC2(t.status)+'" onclick="tlCSt('+tid+')" style="cursor:pointer;border-radius:20px">'+t.status+'</span></td>';
+  row+='<td class="ed" onclick="tlEd('+tid+',\'start\',this)" style="font-size:10px;color:var(--t2)">'+(t.start?iso2disp(t.start):'—')+'</td>';
+  row+='<td class="ed" onclick="tlEd('+tid+',\'end\',this)" style="font-size:10px;color:var(--t2)">'+(t.end?iso2disp(t.end):'—')+'</td>';
+
+  row+='<td style="font-size:11px;text-align:center;color:var(--t2)">'+tlDuration(t.start,t.end)+'</td>';
+  row+='<td style="font-size:11px;text-align:center">'+tlDaysLeft(t.end,t.status)+'</td>';
+  row+='<td class="ed" onclick="tlEd('+tid+',\'comment\',this)" style="font-size:10px;color:var(--t2);max-width:140px">'+(t.comment||'—')+'</td>';
+  var lnk=t.link||'';
+  if(lnk){
+    var href=lnk.indexOf('://')>0?lnk:'https://'+lnk;
+    row+='<td style="font-size:10px;max-width:120px"><a href="'+href+'" target="_blank" style="color:var(--pu);text-decoration:none;display:flex;align-items:center;gap:3px" onclick="event.stopPropagation()"><i class="ti ti-external-link" style="font-size:12px;flex-shrink:0"></i><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:90px">'+lnk+'</span></a></td>';
+  } else {
+    row+='<td style="font-size:10px;color:var(--t3)" class="ed" onclick="tlEd('+tid+',\'link\',this)">+ لینک</td>';
+  }
+
+  row+='</tr>';
+  return row;
 }
 function tlTog(id,v){for(var i=0;i<S.tlTasks.length;i++){if(S.tlTasks[i].id===id){S.tlTasks[i].status=v?'Completed':'Not started';break;}}save();renderTL();}
 function tlF(id,f,v){for(var i=0;i<S.tlTasks.length;i++){if(S.tlTasks[i].id===id){S.tlTasks[i][f]=v;break;}}save();}
 function tlCSt(id){for(var i=0;i<S.tlTasks.length;i++){if(S.tlTasks[i].id===id){var idx=TL_ST.indexOf(S.tlTasks[i].status);S.tlTasks[i].status=TL_ST[(idx+1)%TL_ST.length];break;}}save();renderTL();showN('وضعیت تغییر کرد');}
 function tlCPr(id){for(var i=0;i<S.tlTasks.length;i++){if(S.tlTasks[i].id===id){var idx=TL_PR.indexOf(S.tlTasks[i].priority);S.tlTasks[i].priority=TL_PR[(idx+1)%TL_PR.length];break;}}save();renderTL();showN('اولویت تغییر کرد');}
 function tlEd(id,f,el){el.contentEditable='true';el.focus();el.onblur=function(){for(var i=0;i<S.tlTasks.length;i++){if(S.tlTasks[i].id===id){S.tlTasks[i][f]=el.textContent.trim();break;}}el.contentEditable='false';save();};el.onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();el.blur();}};}
+function tlEdit(id){
+  var t=null;
+  for(var i=0;i<S.tlTasks.length;i++){if(S.tlTasks[i].id===id){t=S.tlTasks[i];break;}}
+  if(!t)return;
+  // Build modal
+  document.getElementById('m-title').textContent='ویرایش وظیفه Task List';
+  var mods='';
+  var allMods=TL_MODS.slice();
+  var modSeen={};
+  for(var i=0;i<S.tlTasks.length;i++){if(!modSeen[S.tlTasks[i].module]){if(allMods.indexOf(S.tlTasks[i].module)<0)allMods.push(S.tlTasks[i].module);modSeen[S.tlTasks[i].module]=1;}}
+  var owns='';
+  for(var i=0;i<S.members.length;i++)owns+='<option value="'+S.members[i].name+'" '+(t.owner===S.members[i].name?'selected':'')+'>'+S.members[i].name+'</option>';
+  var mb=document.getElementById('m-body');
+  mb.innerHTML=
+    '<div class="fg"><label class="fl">ماژول</label>'
+    +'<div style="position:relative"><input class="fi" id="tl-e-mod" value="'+t.module+'" list="tl-e-mod-list" placeholder="ماژول...">'
+    +'<datalist id="tl-e-mod-list">'+allMods.map(function(m){return'<option value="'+m+'">';}).join('')+'</datalist></div></div>'
+    +'<div class="fg"><label class="fl">زیروظیفه / نام وظیفه</label><input class="fi" id="tl-e-sub" value="'+t.sub+'"></div>'
+    +'<div class="fr2">'
+    +'<div class="fg"><label class="fl">اولویت</label><select class="fi" id="tl-e-pri">'
+    +TL_PR.map(function(p){return'<option '+(t.priority===p?'selected':'')+'>'+p+'</option>';}).join('')
+    +'</select></div>'
+    +'<div class="fg"><label class="fl">وضعیت</label><select class="fi" id="tl-e-st">'
+    +TL_ST.map(function(s){return'<option '+(t.status===s?'selected':'')+'>'+s+'</option>';}).join('')
+    +'</select></div></div>'
+    +'<div class="fg"><label class="fl">مالک</label>'
+    +'<div style="position:relative"><input class="fi" id="tl-e-own" value="'+t.owner+'" list="tl-e-own-list" placeholder="مالک...">'
+    +'<datalist id="tl-e-own-list">'+owns+'</datalist></div></div>'
+    +'<div class="fr2">'
+    +'<div class="fg"><label class="fl">شروع</label><div class="dp-wrap"><input class="dp-inp" id="tl-e-st2" value="'+(t.start?iso2disp(t.start):'')+'" placeholder="انتخاب تاریخ" readonly onclick="dpOpen(this)" data-iso="'+(t.start||'')+'"><i class="ti ti-calendar dp-ico"></i></div></div>'
+    +'<div class="fg"><label class="fl">پایان</label><div class="dp-wrap"><input class="dp-inp" id="tl-e-end" value="'+(t.end?iso2disp(t.end):'')+'" placeholder="انتخاب تاریخ" readonly onclick="dpOpen(this)" data-iso="'+(t.end||'')+'"><i class="ti ti-calendar dp-ico"></i></div></div>'
+    +'</div>'
+    +'<div class="fg"><label class="fl">کامنت</label><textarea class="fi" id="tl-e-cmt" rows="2" style="resize:vertical">'+( t.comment||'')+'</textarea></div>'
+    +'<div class="fg"><label class="fl">لینک فایل</label><input class="fi" id="tl-e-lnk" value="'+(t.link||'')+'" placeholder="https://..."></div>';
+  // Override modal submit
+  mMode='tl-edit';
+  mEditId=id;
+  document.getElementById('ov').classList.remove('hidden');
+}
+
 function tlDel(id){if(!confirm('حذف شود؟'))return;var r=[];for(var i=0;i<S.tlTasks.length;i++){if(S.tlTasks[i].id!==id)r.push(S.tlTasks[i]);}S.tlTasks=r;save();renderTL();showN('حذف شد');}
 function tlSort(col){if(tlSC===col)tlSA=!tlSA;else{tlSC=col;tlSA=true;}renderTL();}
+function tlSortVal(t,col){
+  if(col==='_duration'){
+    if(!t.start||!t.end)return -1;
+    return Math.round((new Date(t.end)-new Date(t.start))/86400000);
+  }
+  if(col==='_daysleft'){
+    if(!t.end)return 99999;
+    if(t.status==='Completed')return -99999;
+    return Math.round((new Date(t.end)-new Date())/86400000);
+  }
+  return t[col]||'';
+}
 function tlAdd(){
-  var name=document.getElementById('tl-nn').value.trim();if(!name){showN('نام را وارد کنید');return;}
-  var mod=document.getElementById('tl-nm').value||TL_MODS[0];
+  var name=document.getElementById('tl-nn').value.trim();
+  if(!name){showN('نام زیروظیفه را وارد کنید');return;}
+  var modEl=document.getElementById('tl-nm');
+  var mod=(modEl?modEl.value.trim():'')||TL_MODS[0];
   var pr=mod.indexOf('محصولات')>=0?'P':mod.indexOf('انبار')>=0?'W':mod.indexOf('فروش')>=0?'S':mod.indexOf('خرید')>=0?'B':'T';
   var cnt=0;for(var i=0;i<S.tlTasks.length;i++){if(S.tlTasks[i].module===mod)cnt++;}
   var nst=document.getElementById('tl-nst'),ned=document.getElementById('tl-ned');
-  S.tlTasks.push({id:S.tlNextId++,module:mod,taskId:pr+(cnt+1),date:'',sub:name,merge:false,output:false,erp:true,priority:document.getElementById('tl-np').value,owner:document.getElementById('tl-no').value||'',status:document.getElementById('tl-ns2').value,start:nst?nst.dataset.iso||'':'',end:ned?ned.dataset.iso||'':'',milestone:'Milestone',deliverable:'File'});
-  document.getElementById('tl-nn').value='';if(nst){nst.value='';nst.dataset.iso='';}if(ned){ned.value='';ned.dataset.iso='';}
-  save();renderTL();showN('وظیفه اضافه شد');
+  var noEl=document.getElementById('tl-no');
+  var ncEl=document.getElementById('tl-nc');
+  var nlEl=document.getElementById('tl-nl');
+  S.tlTasks.push({
+    id:S.tlNextId++,module:mod,taskId:pr+(cnt+1),date:'',sub:name,
+    merge:false,output:false,erp:true,
+    priority:document.getElementById('tl-np').value,
+    owner:noEl?noEl.value.trim():'',
+    status:document.getElementById('tl-ns2').value,
+    start:nst?nst.dataset.iso||'':'',
+    end:ned?ned.dataset.iso||'':'',
+    milestone:'',deliverable:'',
+    comment:ncEl?ncEl.value.trim():'',
+    link:nlEl?nlEl.value.trim():''
+  });
+  document.getElementById('tl-nn').value='';
+  if(modEl)modEl.value='';
+  if(noEl)noEl.value='';
+  if(ncEl)ncEl.value='';
+  if(nlEl)nlEl.value='';
+  if(nst){nst.value='';nst.dataset.iso='';}
+  if(ned){ned.value='';ned.dataset.iso='';}
+  save();renderTL();showN('وظیفه اضافه شد ✓');
 }
-function exportTL(){var h=['ID','ماژول','TaskID','زیروظیفه','Merge','Output','ERP','اولویت','مالک','وضعیت','شروع','پایان'],rows=[];for(var i=0;i<S.tlTasks.length;i++){var t=S.tlTasks[i];rows.push([t.id,t.module,t.taskId,t.sub,t.merge?'V':'',t.output?'V':'',t.erp?'ERP':'',t.priority,t.owner,t.status,t.start,t.end]);}dlCSV(h,rows,'task-list.csv');}
+function exportTL(){
+  var h=['ردیف','ماژول','زیروظیفه','اولویت','مالک','وضعیت','شروع','پایان','کامنت','لینک'];
+  var rows=[];
+  for(var i=0;i<S.tlTasks.length;i++){
+    var t=S.tlTasks[i];
+    rows.push([t.taskId,t.module,t.sub,t.priority,t.owner,t.status,t.start,t.end,t.comment||'',t.link||'']);
+  }
+  dlCSV(h,rows,'task-list.csv');
+}
 
 /* RESOURCES */
 function renderRes(){
@@ -893,7 +1385,7 @@ function renderRep(){
 
 /* PROJECTS */
 function renderProj(){
-  var h='';for(var i=0;i<S.projects.length;i++){var p=S.projects[i];h+='<div class="prow"><div style="width:10px;height:10px;border-radius:50%;background:'+C(p.color)+';flex-shrink:0"></div><div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:600">'+p.name+'</div><div style="font-size:10px;color:var(--t2)">'+p.manager+' · '+p.start+' تا '+p.end+'</div></div><div style="min-width:110px"><div class="pb"><div class="pbf" style="width:'+p.progress+'%;background:'+C(p.color)+'"></div></div><div style="font-size:10px;color:var(--t2);text-align:left;margin-top:2px">'+p.progress+'%</div></div><button class="abtn" onclick="openModal(\'project\','+p.id+')" style="margin-right:6px"><i class="ti ti-edit"></i></button><button class="abtn" onclick="delProj('+p.id+')"><i class="ti ti-trash"></i></button></div>';}
+  var h='';for(var i=0;i<S.projects.length;i++){var p=S.projects[i];h+='<div class="prow"><div style="width:10px;height:10px;border-radius:50%;background:'+C(p.color)+';flex-shrink:0"></div><div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:600">'+p.name+'</div><div style="font-size:10px;color:var(--t2)">'+p.manager+(p.start?' · '+iso2disp(p.start):'')+' تا '+(p.end?iso2disp(p.end):'')+'</div></div><div style="min-width:110px"><div class="pb"><div class="pbf" style="width:'+p.progress+'%;background:'+C(p.color)+'"></div></div><div style="font-size:10px;color:var(--t2);text-align:left;margin-top:2px">'+p.progress+'%</div></div><button class="abtn" onclick="openModal(\'project\','+p.id+')" style="margin-right:6px"><i class="ti ti-edit"></i></button><button class="abtn" onclick="delProj('+p.id+')"><i class="ti ti-trash"></i></button></div>';}
   document.getElementById('all-proj').innerHTML=h||'<div style="padding:24px;text-align:center;color:var(--t2)">پروژه‌ای وجود ندارد</div>';
 }
 function delProj(id){if(!confirm('پروژه حذف شود؟'))return;var pr=[],tk=[];for(var i=0;i<S.projects.length;i++){if(S.projects[i].id!==id)pr.push(S.projects[i]);}for(var i=0;i<S.tasks.length;i++){if(S.tasks[i].projId!==id)tk.push(S.tasks[i]);}S.projects=pr;S.tasks=tk;save();renderProj();renderSbProjs();showN('پروژه حذف شد');}
@@ -915,7 +1407,9 @@ function openModal(mode,id){
       +'<div class="fg"><label class="fl">وضعیت</label><select class="fi" id="m-st"><option '+(!t||t.status==='در انتظار'?'selected':'')+'>در انتظار</option><option '+(t&&t.status==='در جریان'?'selected':'')+'>در جریان</option><option '+(t&&t.status==='تکمیل شده'?'selected':'')+'>تکمیل شده</option></select></div></div>'
       +'<div class="fr2"><div class="fg"><label class="fl">شروع</label><div class="dp-wrap"><input class="dp-inp" id="m-s" value="'+(t&&t.start?iso2disp(t.start):'')+'" placeholder="انتخاب تاریخ" readonly onclick="dpOpen(this)" data-iso="'+(t&&t.start?t.start:'')+'"><i class="ti ti-calendar dp-ico"></i></div></div>'
       +'<div class="fg"><label class="fl">پایان</label><div class="dp-wrap"><input class="dp-inp" id="m-e" value="'+(t&&t.end?iso2disp(t.end):'')+'" placeholder="انتخاب تاریخ" readonly onclick="dpOpen(this)" data-iso="'+(t&&t.end?t.end:'')+'"><i class="ti ti-calendar dp-ico"></i></div></div></div>'
-      +'<div class="fg"><label class="fl">پیشرفت: <span id="m-po">'+(t?t.pct:0)+'</span>%</label><input type="range" class="fi" id="m-p" min="0" max="100" value="'+(t?t.pct:0)+'" oninput="document.getElementById(\'m-po\').textContent=this.value" style="padding:4px 0;accent-color:var(--pu)"></div>';
+      +'<div class="fg"><label class="fl">پیشرفت: <span id="m-po">'+(t?t.pct:0)+'</span>%</label><input type="range" class="fi" id="m-p" min="0" max="100" value="'+(t?t.pct:0)+'" oninput="document.getElementById(\'m-po\').textContent=this.value" style="padding:4px 0;accent-color:var(--pu)"></div>'
+    +(id?'<div class="fg"><label class="fl">زیروظایف</label><div id="modal-subtasks" style="border:1px solid var(--brd2);border-radius:var(--r);padding:8px 10px"></div></div>':'');
+  if(id){setTimeout(function(){renderSubtasks(id,'modal-subtasks');},50);}
   }else if(mode==='project'){
     var p=null;if(id){for(var i=0;i<S.projects.length;i++){if(S.projects[i].id===id){p=S.projects[i];break;}}}
     document.getElementById('m-title').textContent=id?'ویرایش پروژه':'پروژه جدید';
@@ -939,6 +1433,29 @@ function closeModal(){document.getElementById('ov').classList.add('hidden');dpCl
 document.getElementById('ov').addEventListener('click',function(e){if(e.target===this)closeModal();});
 function submitModal(){
   var colors=['blue','green','purple','amber','coral','teal'];
+  if(mMode==='tl-edit'){
+    var t=null;
+    for(var i=0;i<S.tlTasks.length;i++){if(S.tlTasks[i].id===mEditId){t=S.tlTasks[i];break;}}
+    if(!t){closeModal();return;}
+    var subEl=document.getElementById('tl-e-sub');
+    var sub=subEl?subEl.value.trim():'';
+    if(!sub){showN('نام وظیفه را وارد کنید');return;}
+    t.module=document.getElementById('tl-e-mod').value.trim()||t.module;
+    t.sub=sub;
+    t.priority=document.getElementById('tl-e-pri').value;
+    t.status=document.getElementById('tl-e-st').value;
+    t.owner=document.getElementById('tl-e-own').value.trim();
+    var st2=document.getElementById('tl-e-st2');
+    var end=document.getElementById('tl-e-end');
+    if(st2)t.start=st2.dataset.iso||'';
+    if(end)t.end=end.dataset.iso||'';
+    var cmt=document.getElementById('tl-e-cmt');
+    var lnk=document.getElementById('tl-e-lnk');
+    if(cmt)t.comment=cmt.value.trim();
+    if(lnk)t.link=lnk.value.trim();
+    save();closeModal();renderTL();showN('وظیفه ویرایش شد ✓');
+    return;
+  }
   if(mMode==='task'){
     var name=document.getElementById('m-n').value.trim();if(!name){showN('نام را وارد کنید');return;}
     var ms=document.getElementById('m-s'),me=document.getElementById('m-e');
@@ -1057,12 +1574,454 @@ function doLogin(){
 document.addEventListener('keydown', function(e){
   if(e.key === 'Enter'){
     var loginVisible = !document.getElementById('login-ov').classList.contains('hidden');
-    if(loginVisible) doLogin();
+    if(loginVisible){doLogin();return;}
+    if(document.activeElement===document.getElementById('tk-q')){tkQuick();return;}
+  }
+  if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openGSearch();return;}
+  if(e.key==='Escape'){
+    var gs=document.getElementById('gsrch');
+    if(gs&&!gs.classList.contains('hidden')){closeGSearch();return;}
   }
 });
 
 // Check auth on load
 checkAuth();
+
+
+/* ═══════════════════════════════════
+   VIEW SWITCHER
+   ═══════════════════════════════════ */
+var curView='list';
+function switchView(view,btn){
+  curView=view;
+  document.querySelectorAll('.vtab').forEach(function(t){t.classList.remove('act');});
+  btn.classList.add('act');
+  var lw=document.getElementById('tk-list-wrap');
+  var bw=document.getElementById('tk-board-wrap');
+  if(view==='list'){
+    if(lw)lw.style.display='';
+    if(bw)bw.style.display='none';
+    renderTasks();
+  } else {
+    if(lw)lw.style.display='none';
+    if(bw){bw.style.display='flex';}
+    renderKanban();
+  }
+}
+
+/* ═══════════════════════════════════
+   KANBAN BOARD
+   ═══════════════════════════════════ */
+var KB_COLS=[
+  {id:'in',label:'در انتظار',st:'در انتظار',bg:'#f0f0f0',fg:'#555'},
+  {id:'pr',label:'در جریان',st:'در جریان',bg:'#e8f4ff',fg:'#0055aa'},
+  {id:'la',label:'دیرکرد',st:'__late__',bg:'#fff0f0',fg:'#aa0000'},
+  {id:'do',label:'تکمیل شده',st:'تکمیل شده',bg:'#f0fff4',fg:'#005522'}
+];
+function renderKanban(){
+  var fp=document.getElementById('tk-fp');
+  var pid=fp&&fp.value?+fp.value:0;
+  var srch=document.getElementById('tk-srch')?document.getElementById('tk-srch').value.toLowerCase():'';
+  var pm={};for(var i=0;i<S.projects.length;i++)pm[S.projects[i].id]=S.projects[i];
+  var today=new Date();today.setHours(0,0,0,0);
+  var tasks=S.tasks.filter(function(t){
+    if(t.isSummary)return false;
+    if(pid&&t.projId!==pid)return false;
+    if(srch&&t.name.toLowerCase().indexOf(srch)<0)return false;
+    return true;
+  });
+  var wrap=document.getElementById('kb-wrap');
+  if(!wrap)return;
+  var html='';
+  for(var ci=0;ci<KB_COLS.length;ci++){
+    var col=KB_COLS[ci];
+    var colTasks=tasks.filter(function(t){
+      if(col.st==='__late__'){
+        if(t.status==='تکمیل شده')return false;
+        if(!t.end)return false;
+        var e=new Date(t.end);e.setHours(0,0,0,0);
+        return e<today;
+      }
+      return t.status===col.st;
+    });
+    html+='<div class="kb-col">';
+    html+='<div class="kb-col-hdr" style="background:'+col.bg+'">';
+    html+='<span class="kb-col-title" style="color:'+col.fg+'">'+col.label;
+    html+='<span class="kb-col-cnt" style="background:'+col.fg+'22;color:'+col.fg+'">'+colTasks.length+'</span></span></div>';
+    html+='<div class="kb-cards">';
+    for(var i=0;i<colTasks.length;i++){
+      var t=colTasks[i];
+      var p=pm[t.projId]||{name:'—',color:'blue'};
+      var late=false,isToday=false;
+      if(t.end&&t.status!=='تکمیل شده'){var e=new Date(t.end);e.setHours(0,0,0,0);var diff=Math.round((e-today)/86400000);late=diff<0;isToday=diff===0;}
+      var mv=null;for(var j=0;j<S.members.length;j++){if(S.members[j].name===t.assignee){mv=S.members[j];break;}}
+      html+='<div class="kb-card'+(late?' late':isToday?' today':'')+'" onclick="openModal(\'task\','+t.id+')">';
+      html+='<div class="kb-card-title">'+t.name+'</div>';
+      html+='<div class="kb-card-meta">';
+      html+='<span class="kb-card-proj" style="background:'+C(p.color)+'22;color:'+C(p.color)+'">'+p.name+'</span>';
+      if(mv)html+='<div class="kb-card-av" style="background:'+C(mv.color)+'" title="'+mv.name+'">'+mv.avatar+'</div>';
+      if(t.end)html+='<span class="kb-card-date'+(late?' late':'')+'">'+(t.end?iso2disp(t.end):'')+'</span>';
+      html+='</div>';
+      if(t.pct>0)html+='<div class="kb-card-pct"><div class="kb-card-pctf" style="width:'+t.pct+'%;background:'+C(p.color)+'"></div></div>';
+      html+='</div>';
+    }
+    html+='<button class="kb-add" onclick="quickAddKanban(\''+col.st+'\')"><i class="ti ti-plus" style="font-size:12px"></i> افزودن</button>';
+    html+='</div></div>';
+  }
+  wrap.innerHTML=html;
+}
+function quickAddKanban(status){
+  var name=prompt('نام وظیفه:');
+  if(!name||!name.trim())return;
+  var pid=S.projects.length?S.projects[0].id:null;
+  var fp=document.getElementById('tk-fp');if(fp&&fp.value)pid=+fp.value;
+  var st=status==='__late__'?'در جریان':status;
+  S.tasks.push({id:S.nextId++,projId:pid,name:name.trim(),assignee:S.members.length?S.members[0].name:'',priority:'متوسط',start:todayISO(),end:'',status:st,pct:0,isSummary:false,parentId:null,dep:null});
+  save();renderKanban();showN('وظیفه اضافه شد');
+}
+
+/* ═══════════════════════════════════
+   ROW COLORING
+   ═══════════════════════════════════ */
+function tkRowClass(t){
+  if(t.status==='تکمیل شده')return ' tkrow-done';
+  if(!t.end)return '';
+  var today=new Date();today.setHours(0,0,0,0);
+  var e=new Date(t.end);e.setHours(0,0,0,0);
+  var diff=Math.round((e-today)/86400000);
+  if(diff<0)return ' tkrow-late';
+  if(diff===0)return ' tkrow-today';
+  return '';
+}
+
+/* ═══════════════════════════════════
+   GLOBAL SEARCH
+   ═══════════════════════════════════ */
+function openGSearch(){
+  document.getElementById('gsrch').classList.remove('hidden');
+  setTimeout(function(){var el=document.getElementById('gsrch-inp');if(el)el.focus();},50);
+}
+function closeGSearch(){
+  document.getElementById('gsrch').classList.add('hidden');
+  var el=document.getElementById('gsrch-inp');if(el)el.value='';
+  var res=document.getElementById('gsrch-results');
+  if(res)res.innerHTML='<div class="gsrch-empty">برای شروع تایپ کنید...</div>';
+}
+function doGSearch(q){
+  var res=document.getElementById('gsrch-results');
+  if(!q||q.length<1){res.innerHTML='<div class="gsrch-empty">برای شروع تایپ کنید...</div>';return;}
+  q=q.toLowerCase();var html='';var total=0;
+  var pm={};for(var i=0;i<S.projects.length;i++)pm[S.projects[i].id]=S.projects[i];
+  var pMatches=S.projects.filter(function(p){return p.name.toLowerCase().indexOf(q)>=0||p.manager.toLowerCase().indexOf(q)>=0;});
+  if(pMatches.length){
+    html+='<div class="gsrch-section">پروژه‌ها</div>';
+    for(var i=0;i<Math.min(3,pMatches.length);i++){var p=pMatches[i];
+      html+='<div class="gsrch-item" onclick="go(\'projects\',document.getElementById(\'nav-projects\'));closeGSearch()">'
+        +'<i class="ti ti-folder gsrch-item-icon" style="color:'+C(p.color)+'"></i>'
+        +'<div class="gsrch-item-main"><div class="gsrch-item-title">'+p.name+'</div>'
+        +'<div class="gsrch-item-sub">'+p.manager+' · '+p.progress+'%</div></div></div>';total++;}
+  }
+  var tMatches=S.tasks.filter(function(t){return !t.isSummary&&(t.name.toLowerCase().indexOf(q)>=0||t.assignee.toLowerCase().indexOf(q)>=0);});
+  if(tMatches.length){
+    html+='<div class="gsrch-section">وظایف</div>';
+    for(var i=0;i<Math.min(5,tMatches.length);i++){var t=tMatches[i];var p=pm[t.projId]||{name:'—',color:'blue'};
+      html+='<div class="gsrch-item" onclick="go(\'tasks\',document.getElementById(\'nav-tasks\'));closeGSearch()">'
+        +'<i class="ti ti-checkbox gsrch-item-icon" style="color:'+stClr(t.status)+'"></i>'
+        +'<div class="gsrch-item-main"><div class="gsrch-item-title">'+t.name+'</div>'
+        +'<div class="gsrch-item-sub">'+p.name+' · '+t.assignee+'</div></div>'
+        +'<button class="cust '+stCls(t.status)+'" style="font-size:9px;pointer-events:none">'+t.status+'</button></div>';total++;}
+  }
+  var tlMatches=S.tlTasks.filter(function(t){return t.sub.toLowerCase().indexOf(q)>=0||t.module.toLowerCase().indexOf(q)>=0||t.owner.toLowerCase().indexOf(q)>=0;});
+  if(tlMatches.length){
+    html+='<div class="gsrch-section">Task List</div>';
+    for(var i=0;i<Math.min(4,tlMatches.length);i++){var t=tlMatches[i];
+      html+='<div class="gsrch-item" onclick="go(\'tasklist\',document.getElementById(\'nav-tasklist\'));closeGSearch()">'
+        +'<i class="ti ti-table gsrch-item-icon" style="color:var(--pu)"></i>'
+        +'<div class="gsrch-item-main"><div class="gsrch-item-title">'+t.sub+'</div>'
+        +'<div class="gsrch-item-sub">'+t.module+' · '+t.owner+'</div></div>'
+        +'<span class="bdg '+stC2(t.status)+'" style="font-size:9px">'+t.status+'</span></div>';total++;}
+  }
+  var mMatches=S.members.filter(function(m){return m.name.toLowerCase().indexOf(q)>=0||m.role.toLowerCase().indexOf(q)>=0;});
+  if(mMatches.length){
+    html+='<div class="gsrch-section">اعضا</div>';
+    for(var i=0;i<Math.min(3,mMatches.length);i++){var m=mMatches[i];
+      html+='<div class="gsrch-item" onclick="go(\'resources\',document.getElementById(\'nav-resources\'));closeGSearch()">'
+        +'<div class="aav" style="width:24px;height:24px;font-size:10px;background:'+C(m.color)+';flex-shrink:0">'+m.avatar+'</div>'
+        +'<div class="gsrch-item-main"><div class="gsrch-item-title">'+m.name+'</div>'
+        +'<div class="gsrch-item-sub">'+m.role+'</div></div></div>';total++;}
+  }
+  if(!total)html='<div class="gsrch-empty">نتیجه‌ای یافت نشد</div>';
+  res.innerHTML=html;
+}
+
+
+
+/* ═══════════════════════════════════
+   SUBTASK SYSTEM
+   ═══════════════════════════════════ */
+function getSubtasks(parentId){
+  return S.tasks.filter(function(t){return t.parentId===parentId&&!t.isSummary;});
+}
+
+function renderSubtasks(parentId,containerId){
+  var el=document.getElementById(containerId);
+  if(!el)return;
+  var subs=getSubtasks(parentId);
+  var html='';
+  for(var i=0;i<subs.length;i++){
+    var s=subs[i];
+    var done=s.status==='تکمیل شده';
+    html+='<div class="st-row">'
+      +'<input type="checkbox" class="cb" '+(done?'checked':'')+' onchange="stToggle('+s.id+',this.checked,\''+containerId+'\','+parentId+')">'
+      +'<span class="st-name'+(done?' done':'')+'">'+s.name+'</span>'
+      +'<span class="st-pct">'+s.pct+'%</span>'
+      +'<button class="abtn" onclick="stDel('+s.id+',\''+containerId+'\','+parentId+')" title="حذف"><i class="ti ti-x" style="font-size:11px"></i></button>'
+      +'</div>';
+  }
+  html+='<div class="st-add">'
+    +'<input id="st-new-'+containerId+'" placeholder="+ زیروظیفه جدید..." onkeydown="if(event.key===\'Enter\')stAdd('+parentId+',\''+containerId+'\')">'
+    +'<button class="btn btn-p btn-sm" onclick="stAdd('+parentId+',\''+containerId+'\')"><i class="ti ti-plus"></i></button>'
+    +'</div>';
+  if(!subs.length)html='<div style="font-size:11px;color:var(--t2);padding:4px 0">هنوز زیروظیفه‌ای ندارد</div>'+html.split('<div class="st-add">')[1]?'<div class="st-add">'+html.split('<div class="st-add">')[1]:'';
+  // simpler:
+  html='';
+  for(var i=0;i<subs.length;i++){
+    var s=subs[i];var done=s.status==='تکمیل شده';
+    html+='<div class="st-row">'
+      +'<input type="checkbox" class="cb" '+(done?'checked':'')+' onchange="stToggle('+s.id+',this.checked,\''+containerId+'\','+parentId+')">'
+      +'<span class="st-name'+(done?' done':'')+'">'+s.name+'</span>'
+      +'<span class="st-pct" style="color:'+(done?'var(--green)':'var(--t2)')+'">'+s.pct+'%</span>'
+      +'<button class="abtn" onclick="stDel('+s.id+',\''+containerId+'\','+parentId+')" title="حذف"><i class="ti ti-x" style="font-size:11px"></i></button>'
+      +'</div>';
+  }
+  if(!subs.length)html+='<div style="font-size:11px;color:var(--t3);padding:4px 0;text-align:center">زیروظیفه‌ای ندارد</div>';
+  html+='<div class="st-add">'
+    +'<input id="st-inp-'+containerId+'" placeholder="+ زیروظیفه جدید..." onkeydown="if(event.key===\'Enter\')stAdd('+parentId+',\''+containerId+'\')">'
+    +'<button class="btn btn-p btn-sm" onclick="stAdd('+parentId+',\''+containerId+'\')"><i class="ti ti-plus"></i></button>'
+    +'</div>';
+  el.innerHTML=html;
+  // Update parent progress
+  updateParentPct(parentId);
+}
+
+function stAdd(parentId,containerId){
+  var inp=document.getElementById('st-inp-'+containerId);
+  if(!inp)return;
+  var name=inp.value.trim();
+  if(!name)return;
+  var parent=null;for(var i=0;i<S.tasks.length;i++){if(S.tasks[i].id===parentId){parent=S.tasks[i];break;}}
+  S.tasks.push({id:S.nextId++,projId:parent?parent.projId:null,name:name,assignee:parent?parent.assignee:'',priority:'متوسط',start:todayISO(),end:parent?parent.end:'',status:'در انتظار',pct:0,isSummary:false,parentId:parentId,dep:null});
+  inp.value='';save();renderSubtasks(parentId,containerId);showN('زیروظیفه اضافه شد');
+}
+
+function stToggle(id,v,containerId,parentId){
+  for(var i=0;i<S.tasks.length;i++){if(S.tasks[i].id===id){S.tasks[i].status=v?'تکمیل شده':'در انتظار';S.tasks[i].pct=v?100:0;break;}}
+  save();renderSubtasks(parentId,containerId);
+}
+
+function stDel(id,containerId,parentId){
+  S.tasks=S.tasks.filter(function(t){return t.id!==id;});
+  save();renderSubtasks(parentId,containerId);showN('حذف شد');
+}
+
+function updateParentPct(parentId){
+  var subs=getSubtasks(parentId);
+  if(!subs.length)return;
+  var done=subs.filter(function(t){return t.status==='تکمیل شده';}).length;
+  var pct=Math.round(done/subs.length*100);
+  for(var i=0;i<S.tasks.length;i++){if(S.tasks[i].id===parentId){S.tasks[i].pct=pct;break;}}
+  var po=document.getElementById('m-po');if(po)po.textContent=pct;
+  var mp=document.getElementById('m-p');if(mp)mp.value=pct;
+  save();
+}
+
+/* ═══════════════════════════════════
+   TIME TRACKING
+   ═══════════════════════════════════ */
+var ttRunning=false,ttStart=null,ttTaskId=null,ttInterval=null;
+var ttLogs=[];
+
+function ttToggle(){
+  if(!ttRunning){
+    var sel=document.getElementById('tt-task-sel');
+    ttTaskId=sel?+sel.value:null;
+    if(!ttTaskId){showN('یک وظیفه انتخاب کنید');return;}
+    ttRunning=true;ttStart=Date.now();
+    var btn=document.getElementById('tt-start-btn');
+    if(btn)btn.innerHTML='<i class="ti ti-player-stop"></i> توقف';
+    ttInterval=setInterval(ttTick,1000);
+    showN('تایمر شروع شد');
+  } else {
+    var elapsed=Date.now()-ttStart;
+    var mins=Math.round(elapsed/60000);
+    if(mins<1)mins=1;
+    ttLogs.push({taskId:ttTaskId,mins:mins,date:todayISO(),ts:Date.now()});
+    ttRunning=false;clearInterval(ttInterval);
+    var btn=document.getElementById('tt-start-btn');
+    if(btn)btn.innerHTML='<i class="ti ti-player-play"></i> شروع';
+    var disp=document.getElementById('tt-disp');if(disp)disp.textContent='00:00:00';
+    save();renderTT();showN('زمان ثبت شد: '+mins+' دقیقه');
+  }
+}
+
+function ttTick(){
+  var elapsed=Date.now()-ttStart;
+  var h=Math.floor(elapsed/3600000);
+  var m=Math.floor((elapsed%3600000)/60000);
+  var s=Math.floor((elapsed%60000)/1000);
+  var disp=document.getElementById('tt-disp');
+  if(disp)disp.textContent=String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+}
+
+function ttLog(){
+  var sel=document.getElementById('tt-task-sel');
+  var taskId=sel?+sel.value:null;
+  if(!taskId){showN('یک وظیفه انتخاب کنید');return;}
+  var mins=prompt('چند دقیقه؟');
+  if(!mins||isNaN(+mins))return;
+  ttLogs.push({taskId:taskId,mins:+mins,date:todayISO(),ts:Date.now()});
+  save();renderTT();showN('زمان ثبت شد');
+}
+
+function renderTT(){
+  // Populate task selector
+  var sel=document.getElementById('tt-task-sel');
+  if(sel){
+    var opts='<option value="">انتخاب وظیفه...</option>';
+    for(var i=0;i<S.tasks.length;i++){
+      var t=S.tasks[i];if(t.isSummary)continue;
+      opts+='<option value="'+t.id+'" '+(ttTaskId===t.id?'selected':'')+'>'+t.name+'</option>';
+    }
+    sel.innerHTML=opts;
+  }
+  // Summary by member
+  var memberMins={};
+  for(var i=0;i<S.members.length;i++)memberMins[S.members[i].name]=0;
+  for(var i=0;i<ttLogs.length;i++){
+    var log=ttLogs[i];
+    var task=null;for(var j=0;j<S.tasks.length;j++){if(S.tasks[j].id===log.taskId){task=S.tasks[j];break;}}
+    if(task&&memberMins[task.assignee]!==undefined)memberMins[task.assignee]+=log.mins;
+  }
+  var maxMins=0;for(var k in memberMins){if(memberMins[k]>maxMins)maxMins=memberMins[k];}
+  if(maxMins===0)maxMins=1;
+  var sumHtml='';
+  for(var i=0;i<S.members.length;i++){
+    var m=S.members[i];var mins=memberMins[m.name]||0;
+    var h=Math.floor(mins/60);var min=mins%60;
+    sumHtml+='<div class="tt-row">'
+      +'<div class="tt-av" style="background:'+C(m.color)+'">'+m.avatar+'</div>'
+      +'<div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:600">'+m.name+'</div>'
+      +'<div class="tt-bar"><div class="tt-barf" style="width:'+Math.round(mins/maxMins*100)+'%;background:'+C(m.color)+'"></div></div></div>'
+      +'<div style="font-size:12px;font-weight:600;min-width:60px;text-align:left">'+h+'h '+min+'m</div>'
+      +'</div>';
+  }
+  var sum=document.getElementById('tt-summary');
+  if(sum)sum.innerHTML=sumHtml||'<div style="padding:20px;text-align:center;color:var(--t2)">هنوز زمانی ثبت نشده</div>';
+  // Log list
+  var logHtml='';
+  var sorted=ttLogs.slice().sort(function(a,b){return b.ts-a.ts;});
+  for(var i=0;i<sorted.length;i++){
+    var log=sorted[i];
+    var task=null;for(var j=0;j<S.tasks.length;j++){if(S.tasks[j].id===log.taskId){task=S.tasks[j];break;}}
+    if(!task)continue;
+    var h=Math.floor(log.mins/60);var min=log.mins%60;
+    logHtml+='<div class="tt-row">'
+      +'<i class="ti ti-clock" style="color:var(--pu);font-size:14px"></i>'
+      +'<div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+task.name+'</div>'
+      +'<div style="font-size:10px;color:var(--t2)">'+task.assignee+' · '+log.date+'</div></div>'
+      +'<div style="font-size:12px;font-weight:600;color:var(--pu)">'+h+'h '+min+'m</div>'
+      +'<button class="abtn" onclick="ttDelLog('+i+')" title="حذف"><i class="ti ti-trash" style="font-size:12px"></i></button>'
+      +'</div>';
+  }
+  var logEl=document.getElementById('tt-log-list');
+  if(logEl)logEl.innerHTML=logHtml||'<div style="padding:20px;text-align:center;color:var(--t2)">لاگی ثبت نشده</div>';
+}
+
+function ttDelLog(idx){
+  ttLogs.splice(idx,1);save();renderTT();
+}
+
+/* ═══════════════════════════════════
+   CALENDAR VIEW
+   ═══════════════════════════════════ */
+var calY=new Date().getFullYear(),calM=new Date().getMonth()+1,calViewMode='month';
+var CAL_DOW=['ش','ی','د','س','چ','پ','ج'];
+
+function calNav(d){
+  if(calViewMode==='month'){calM+=d;if(calM>12){calM=1;calY++;}if(calM<1){calM=12;calY--;}}
+  else{var dt=new Date(calY,calM-1,calWeekStart||1);dt.setDate(dt.getDate()+d*7);calY=dt.getFullYear();calM=dt.getMonth()+1;calWeekStart=dt.getDate();}
+  renderCal();
+}
+var calWeekStart=1;
+
+function calGoToday(){var n=new Date();calY=n.getFullYear();calM=n.getMonth()+1;renderCal();}
+function calView(v,btn){
+  calViewMode=v;
+  document.querySelectorAll('#cal-v-m,#cal-v-w').forEach(function(b){b.classList.remove('za');});
+  btn.classList.add('za');renderCal();
+}
+
+function calGetEvents(y,m,d){
+  var fp=document.getElementById('cal-fp');
+  var pid=fp&&fp.value?+fp.value:0;
+  var dateStr=y+'-'+String(m).padStart(2,'0')+'-'+String(d).padStart(2,'0');
+  var evs=[];
+  for(var i=0;i<S.tasks.length;i++){
+    var t=S.tasks[i];if(t.isSummary)continue;
+    if(pid&&t.projId!==pid)continue;
+    if(t.start===dateStr||t.end===dateStr)evs.push(t);
+  }
+  for(var i=0;i<S.tlTasks.length;i++){
+    var t=S.tlTasks[i];
+    if(pid)continue;
+    if(t.start===dateStr||t.end===dateStr)evs.push({name:t.sub,status:t.status==='Completed'?'تکمیل شده':'در جریان',projId:null,_tl:true});
+  }
+  return evs;
+}
+
+function renderCal(){
+  var fp=document.getElementById('cal-fp');
+  if(fp){var cur=fp.value;fp.innerHTML='<option value="">همه پروژه‌ها</option>';for(var i=0;i<S.projects.length;i++)fp.innerHTML+='<option value="'+S.projects[i].id+'" '+(+cur===S.projects[i].id?'selected':'')+'>'+S.projects[i].name+'</option>';}
+  var months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var monthsFA=['ژانویه','فوریه','مارس','آوریل','مه','ژوئن','ژوئیه','اوت','سپتامبر','اکتبر','نوامبر','دسامبر'];
+  document.getElementById('cal-title').textContent=monthsFA[calM-1]+' '+calY;
+  var pm={};for(var i=0;i<S.projects.length;i++)pm[S.projects[i].id]=S.projects[i];
+  var today=new Date(),ty=today.getFullYear(),tm=today.getMonth()+1,td=today.getDate();
+  // DOW header
+  var dowHtml='';
+  for(var i=0;i<7;i++)dowHtml+='<div class="cal-dow">'+CAL_DOW[i]+'</div>';
+  document.getElementById('cal-dow-row').innerHTML=dowHtml;
+  // Grid
+  var dim=new Date(calY,calM,0).getDate();
+  var firstDow=(new Date(calY,calM-1,1).getDay()+1)%7;
+  var prevDim=new Date(calY,calM-1,0).getDate();
+  var gridHtml='';
+  // prev month cells
+  for(var i=firstDow-1;i>=0;i--){
+    var d=prevDim-i;
+    var pm2=calM===1?calM=12:calM-1;var py=calM===1?calY-1:calY;
+    gridHtml+='<div class="cal-day other-month"><div class="cal-day-num">'+d+'</div></div>';
+  }
+  // current month
+  for(var d=1;d<=dim;d++){
+    var isToday=(ty===calY&&tm===calM&&td===d);
+    var evs=calGetEvents(calY,calM,d);
+    var evHtml='';
+    for(var i=0;i<Math.min(3,evs.length);i++){
+      var ev=evs[i];
+      var p=pm[ev.projId]||{color:'purple'};
+      var clr=ev._tl?'#7c4dff':C(p.color);
+      evHtml+='<div class="cal-event" style="background:'+clr+'22;color:'+clr+'" title="'+ev.name+'">'+ev.name+'</div>';
+    }
+    if(evs.length>3)evHtml+='<div class="cal-more">+'+(evs.length-3)+' بیشتر</div>';
+    gridHtml+='<div class="cal-day'+(isToday?' today':'')+'"><div class="cal-day-num">'+d+'</div>'+evHtml+'</div>';
+  }
+  // fill remaining
+  var total=firstDow+dim;var remain=(7-total%7)%7;
+  for(var d=1;d<=remain;d++)gridHtml+='<div class="cal-day other-month"><div class="cal-day-num">'+d+'</div></div>';
+  document.getElementById('cal-grid').innerHTML=gridHtml;
+}
+
 
 /* INIT */
 // Only init if already logged in
